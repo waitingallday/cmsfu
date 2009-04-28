@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<side>
+  <block heading="Navigate">
+    <link title="Home">.</link>
+    <link title="PostgreSQL">tags/postgresql</link>
+    <link title="jQuery">tags/jquery</link>
+    <link title="IE6">tags/ie6</link>
+    <link title="Symbolic link">Archive/Title/Symbolic_link_to_a_directory</link>
+    <link title="XML Character Entities">char/</link>
+    <link title="CSS Reference">css/</link>
+  </block>
+  <block heading="Tags">
+    <call>$tags->print_cloud_s(true,$rel);</call>
+  </block>
+  <block heading="About">
+    <call>$tags->print_count();</call>
+  </block>
+</side>
+

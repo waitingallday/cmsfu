@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<book>
+  <content>
+<![CDATA[
+<style type="text/css">
+table { width:100%; }
+</style>
+
+	<h2>CSS2 Reference</h2>
+
+	<table>
+	  <tbody><tr>
+	    <th>Property</th>
+	    <th>Values</th>
+	    <th>W3C Rec.</th>
+	  </tr>
+	  <tr>
+	    <td><a name="b"></a>background</td>
+	    <td><em>background-color<br />
+	      background-image<br />
+	      background-repeat background-attachment background-position</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>background-attachment</td>
+	    <td><code>scroll<br />
+	      fixed</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>background-color</td>
+	    <td><em>color-rgb</em> <code>rgb(255, 0, 0)</code><br />
+	      <em>color-hex</em> <code>#f00</code> or <code>#ff0000</code><br />
+	      <em>color-name</em> <code>red<br />
+	      transparent</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>background-image</td>
+	    <td><em>url</em><br />
+	      <code>none</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>background-position</td>
+	    <td><code>top left<br />
+	      top center<br />
+	      top right<br />
+	      center left<br />
+	      center center<br />
+	      center right<br />
+	      bottom left<br />
+	      bottom center<br />
+	      bottom right</code><br />
+	      <em>x y</em> <code>130px 150px</code> or <code>10% 25%</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>background-repeat</td>
+	    <td><code>repeat<br />
+	      repeat-x<br />
+	      repeat-y<br />
+	      no-repeat</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>border</td>
+	    <td><em>border-width<br />
+	      border-style<br />
+	      border-color</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>border-bottom</td>
+	    <td><em>border-bottom-width border-bottom-style border-bottom-color</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>border-collapse</td>
+	    <td><code>collapse<br />
+	      separate</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>border-color</td>
+	    <td><em>color-rgb</em> <code>rgb(255, 0, 0)</code><br />
+	      <em>color-hex</em> <code>#f00</code> or <code>#ff0000</code><br />
+	      <em>color-name</em> <code>red</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>border-left</td>
+	    <td><em>border-left-width border-left-style border-left-color<br />
+		</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>border-right</td>
+	    <td><em>border-right-width border-right-style border-right-color</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>border-spacing</td>
+	    <td><em>length</em> <code>10px</code> or <code>2em</code> or <code>30%</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>border-style</td>
+	    <td><code>none<br />
+	      hidden<br />
+	      dotted<br />
+	      dashed<br />
+	      solid<br />
+	      double<br />
+	      groove<br />
+	      ridge<br />
+	      inset<br />
+	      outset</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>border-top</td>
+	    <td><em>border-top-width border-top-style border-top-color</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>border-top-color<br />
+		  border-right-color<br />
+		  border-bottom-color<br />
+		  border-left-color</td>
+	    <td><em>border-color</em></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>border-top-style<br />
+		  border-right-style<br />
+		  border-bottom-style<br />
+		  border-left-style</td>
+	    <td><em>border-style</em></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>border-top-width<br />
+		  border-right-width<br />
+		  border-bottom-width<br />
+		  border-left-width</td>
+	    <td><em>border-width</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>border-width</td>
+	    <td><code>thin<br />
+	      medium<br />
+	      thick</code><br />
+	      <em>length</em> <code>1px</code> or <code>0.2em</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td><a name="c"></a>caption-side</td>
+	    <td><code>top<br />
+	      right<br />
+	      bottom<br />
+	      left</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>clear</td>
+	    <td><code>left<br />
+	      right<br />
+	      both<br />
+	      none</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>clip</td>
+	    <td><em>shape<br />
+	      </em><code>auto</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>color</td>
+	    <td><em>color-rgb</em> <code>rgb(255, 0, 0)</code><br />
+	      <em>color-hex</em> <code>#f00</code> or <code>#ff0000</code><br />
+	      <em>color-name</em> <code>red</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>content</td>
+	    <td><em>string</em><br />
+	      <em>url<br />
+	      </em><code>counter(</code><em>name</em><code>)<br />
+	      counter(</code><em>name, list-style-type</em><code>)<br />
+	      counters(</code><em>name, string</em><code>)<br />
+	      counters(</code><em>name, string, list-style-type</em><code>)<br />
+	      attr(X)<br />
+	      open-quote<br />
+	      close-quote<br />
+	      no-open-quote<br />
+	      no-close-quote</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>counter-increment</td>
+	    <td><code>none</code><br />
+	      <em>identifier number</em></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>counter-reset</td>
+	    <td><code>none</code><br />
+	      <em>identifier number</em></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>cursor</td>
+	    <td><em>url</em><br />
+	      <code>auto<br />
+	      crosshair<br />
+	      default<br />
+	      pointer<br />
+	      move<br />
+	      e-resize<br />
+	      ne-resize<br />
+	      nw-resize<br />
+	      n-resize<br />
+	      se-resize<br />
+	      sw-resize<br />
+	      s-resize<br />
+	      w-resize<br />
+	      text<br />
+	      wait<br />
+	      help</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>direction</td>
+	    <td><code>ltr<br />
+	      rtl</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="d"></a>display</td>
+	    <td><code>none<br />
+	      inline<br />
+	      block<br />
+	      list-item<br />
+	      run-in<br />
+	      compact<br />
+	      marker<br />
+	      table<br />
+	      inline-table<br />
+	      table-row-group<br />
+	      table-header-group<br />
+	      table-footer-group<br />
+	      table-row<br />
+	      table-column-group<br />
+	      table-column<br />
+	      table-cell<br />
+	      table-caption</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td><a name="e"></a>empty-cells</td>
+	    <td><code>show<br />
+	      hide</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="f"></a>float</td>
+	    <td><code>left<br />
+	      right<br />
+	      none</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>font</td>
+	    <td><em>font-style<br />
+	      font-variant<br />
+	      font-weight<br />
+	      font-size/line-height<br />
+	      font-family<br />
+	      </em><code>caption<br />
+	      icon<br />
+	      menu<br />
+	      message-box<br />
+	      small-caption<br />
+	      status-bar</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>font-family</td>
+	    <td><em>font-family, generic-family</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>font-size</td>
+	    <td><code>xx-small<br />
+	      x-small<br />
+	      small<br />
+	      medium<br />
+	      large<br />
+	      x-large<br />
+	      xx-large<br />
+	      smaller<br />
+	      larger</code><em><br />
+	      length</em> <code>12pt</code> or <code>16px</code> or <code>1.2em</code> or <code>120%</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>font-size-adjust</td>
+	    <td><code>none</code><br />
+	      <em>number</em> <code>2pt</code> or <code>4px</code> or <code>0.2em</code> or <code>20%</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>font-stretch</td>
+	    <td><code>normal<br />
+	      wider<br />
+	      narrower<br />
+	      ultra-condensed<br />
+	      extra-condensed<br />
+	      condensed<br />
+	      semi-condensed<br />
+	      semi-expanded<br />
+	      expanded<br />
+	      extra-expanded<br />
+	      ultra-expanded</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>font-style</td>
+	    <td><code>normal<br />
+	      italic<br />
+	      oblique</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>font-variant</td>
+	    <td><code>normal<br />
+	      small-caps</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>font-weight</td>
+	    <td><code>100<br />
+	      200<br />
+	      300<br />
+		  400</code> or <code>normal</code><br />
+	      <code>500<br />
+	      600<br />
+	      700</code> or <code>bold</code><br />
+	      <code>800<br />
+	      900<br />
+	      bolder</code> (relative to parent) <code><br />
+	      lighter</code> (relative to parent)</td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td><a name="h"></a>height</td>
+	    <td><code>auto</code><br />
+	      <em>length</em> <code>100px</code> or <code>26em</code> or <code>80%</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td><a name="l"></a>letter-spacing</td>
+	    <td><code>normal</code><br />
+		  <em>length</em> <code>10px</code> or <code>2em</code> or <code>30%</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>line-height</td>
+	    <td><code>normal</code><br />
+	      <em>length</em> <code>2px</code> or <code>1.1em</code> or <code>120%</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>list-style</td>
+	    <td><em>list-style-type<br />
+	      list-style-position<br />
+	      list-style-image</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>list-style-image</td>
+	    <td><code>none</code><br />
+	      <em>url</em></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>list-style-position</td>
+	    <td><code>inside<br />
+	      outside</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>list-style-type</td>
+	    <td><code>none<br />
+	      disc<br />
+	      circle<br />
+	      square<br />
+	      decimal<br />
+	      decimal-leading-zero<br />
+	      lower-roman<br />
+	      upper-roman<br />
+	      lower-alpha<br />
+	      upper-alpha<br />
+	      lower-greek<br />
+	      lower-latin<br />
+	      upper-latin<br />
+	      hebrew<br />
+	      armenian<br />
+	      georgian<br />
+	      cjk-ideographic<br />
+	      hiragana<br />
+	      katakana<br />
+	      hiragana-iroha<br />
+	      katakana-iroha</code></td>
+	    <td>CSS1/2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="m"></a>margin</td>
+	    <td><em>margin-top margin-right margin-bottom margin-left</em><br />
+		  <code>auto</code><br />
+		      <em>length</em> <code>10px</code> or <code>2em</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>margin-top<br />
+		  margin-right<br />
+		  margin-bottom<br />
+		  margin-left</td>
+	    <td><code>auto</code><br />
+	      <em>length</em> <code>10px</code> or <code>2em</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>marker-offset</td>
+	    <td><code>auto</code><br />
+	      <em>length</em> <code>10px</code> or <code>1em</code> or <code>110%</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>max-height</td>
+	    <td><code>none</code><br />
+	      <em>length</em> <code>100px</code> or <code>26em</code> or <code>80%</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>max-width</td>
+	    <td><code>none</code><br />
+	      <em>length</em> <code>100px</code> or <code>26em</code> or <code>80%</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>min-height</td>
+	    <td><em>length</em> <code>100px</code> or <code>26em</code> or <code>80%</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>min-width</td>
+	    <td><em>length</em> <code>100px</code> or <code>26em</code> or <code>80%</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="o"></a>outline</td>
+	    <td><em>outline-width<br />
+	      outline-style<br />
+	      outline-color</em></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>outline-width</td>
+	    <td><code>thin<br />
+	      medium<br />
+	      thick</code><br />
+	      <em>length</em> <code>4px</code> or <code>0.3em</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>outline-style</td>
+	    <td><code>none<br />
+	      dotted<br />
+	      dashed<br />
+	      solid<br />
+	      double<br />
+	      groove<br />
+	      ridge<br />
+	      inset<br />
+	      outset</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>outline-color</td>
+	    <td><em>color-rgb</em> <code>rgb(255, 0, 0)</code><br />
+	      <em>color-hex</em> <code>#f00</code> or <code>#ff0000</code><br />
+	      <em>color-name</em> <code>red</code><br />
+	      <code>invert</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>overflow</td>
+	    <td><code>visible<br />
+	      hidden<br />
+	      scroll<br />
+	      auto</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="p"></a>padding</td>
+	    <td><em>padding-top padding-right padding-bottom padding-left</em><br />
+	      <code>auto</code><br />
+	      <em>length</em> <code>10px</code> or <code>2em</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>padding-top<br />
+		  padding-right<br />
+		  padding-bottom<br />
+		  padding-left</td>
+	    <td><code>auto</code><br />
+		  <em>length</em> <code>10px</code> or <code>2em</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>position</td>
+	    <td><code>static<br />
+	      relative<br />
+	      absolute<br />
+	      fixed</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="q"></a>quotes</td>
+	    <td><code>none</code><br />
+	      <em>string string</em></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="t"></a>table-layout</td>
+	    <td><code>auto<br />
+	      fixed</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>text-align</td>
+	    <td><code>left<br />
+	      right<br />
+	      center<br />
+	      justify</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>text-decoration</td>
+	    <td><code>none<br />
+	      underline<br />
+	      overline<br />
+	      line-through<br />
+	      blink</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>text-indent</td>
+	    <td><em>length</em> <code>10px</code> or <code>2em</code> or <code>30%</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>text-shadow</td>
+	    <td><code>none</code><br />
+		 <em>color-rgb</em> <code>rgb(255, 0, 0)</code><br />
+		 <em>color-hex</em> <code>#f00</code> or <code>#ff0000</code><br />
+		 <em>color-name</em> <code>red</code><br />
+	    <em>length</em> <code>10px</code> or <code>2em</code></td>
+	    <td>CSS3?</td>
+	  </tr>
+	  <tr>
+	    <td>text-transform</td>
+	    <td><code>none<br />
+	      capitalize<br />
+	      uppercase<br />
+	      lowercase</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>top<br />
+		  right<br />
+		  bottom<br />
+		  left</td>
+	    <td>auto<br />
+		  <em>length</em> <code>10px</code> or <code>2em</code> or <code>30%</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="u"></a>unicode-bidi</td>
+	    <td><code>normal<br />
+	      embed<br />
+	      bidi-override</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="v"></a>vertical-align</td>
+	    <td><code>baseline<br />
+	      sub<br />
+	      super<br />
+	      top<br />
+	      text-top<br />
+	      middle<br />
+	      bottom<br />
+	      text-bottom</code><br />
+		  <em>length</em> <code>10px</code> or <code>2em</code> or <code>30%</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>visibility</td>
+	    <td><code>visible<br />
+	      hidden<br />
+	      collapse</code></td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td><a name="w"></a>width</td>
+	    <td><code>auto</code><br />
+	      <em>length</em> <code>100px</code> or <code>26em</code> or <code>80%</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>white-space</td>
+	    <td><code>normal<br />
+	      pre<br />
+	      nowrap</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>word-spacing</td>
+	    <td><code>normal</code><br />
+		  <em>length</em> <code>10px</code> or <code>2em</code> or <code>30%</code></td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td><a name="z"></a>z-index</td>
+	    <td><code>auto</code><br />
+	      <em>number</em></td>
+	    <td>CSS2</td>
+	  </tr>
+	</tbody></table>
+
+	<h2><a name="pseudoclasses"></a>Pseudo-classes</h2>
+	<table>
+	  <tbody><tr>
+	    <th>Pseudo-class</th>
+	    <th>Purpose</th>
+	    <th>W3C Rec.</th>
+	  </tr>
+	  <tr> 
+	    <td>:active</td>
+	    <td>activated element</td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr> 
+	    <td>:focus</td>
+	    <td>element has focus</td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr> 
+	    <td>:hover</td>
+	    <td>mouse over</td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr> 
+	    <td>:link</td>
+	    <td>unvisited link</td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr> 
+	    <td>:visited</td>
+	    <td>visited link</td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr> 
+	    <td>:first-child</td>
+	    <td>first child of another element</td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr> 
+	    <td>:lang</td>
+	    <td>language to use in specified element</td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr> 
+	    <td>:first-letter</td>
+	    <td>first letter of a text element</td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>:first-line</td>
+	    <td>first line of a text element</td>
+	    <td>CSS1</td>
+	  </tr>
+	  <tr>
+	    <td>:before</td>
+	    <td>insert content before element</td>
+	    <td>CSS2</td>
+	  </tr>
+	  <tr>
+	    <td>:after</td>
+	    <td>insert content after element</td>
+	    <td>CSS2</td>
+	  </tr>
+	</tbody></table>
+
+	<h2><a name="units"></a>Units</h2>
+	<table>
+	  <tbody><tr>
+	    <th>Unit</th>
+	    <th>Abbrev.</th>
+	    <th>Purpose</th>
+	  </tr>
+	  <tr> 
+	    <td>pixel</td>
+	    <td>px</td>
+	    <td>absolute</td>
+	  </tr>
+	  <tr> 
+	    <td>point</td>
+	    <td>pt</td>
+	    <td>absolute (font)</td>
+	  </tr>
+	  <tr> 
+	    <td>em</td>
+	    <td>em</td>
+	    <td>relative (font)</td>
+	  </tr>
+	  <tr> 
+	    <td>percent</td>
+	    <td>%</td>
+	    <td>relative</td>
+	  </tr>
+	  <tr> 
+	    <td>none</td>
+	    <td>0</td>
+	    <td>disable property</td>
+	  </tr>
+	</tbody></table>
+]]>
+  </content>
+</book>
+

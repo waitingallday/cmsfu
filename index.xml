@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<index>
+  <news title="CSS opacity">
+    <tag>css</tag>
+    <tag>firefox</tag>
+    <tag>ie6</tag>
+  </news>
+  <news title="User management">
+    <tag>linux</tag>
+    <tag>shell</tag>
+    <tag>sysadmin</tag>
+    <tag>redhat</tag>
+    <tag>ubuntu</tag>
+  </news>
+  <news title="phpMyAdmin import from mysqldump">
+    <tag>mysql</tag>
+    <tag>shell</tag>
+  </news>
+  <news title="Javascript form submit">
+    <tag>javascript</tag>
+    <tag>html</tag>
+    <tag>php</tag>
+  </news>
+  <news title="AppleScript comments">
+    <tag>mac</tag>
+  </news>
+  <news title="Convert ISO-8859-1 to UTF-8">
+    <tag>unicode</tag>
+    <tag>php</tag>
+    <tag>html</tag>
+  </news>
+  <news title="Japanese in Google Chrome">
+    <tag>google</tag>
+    <tag>chrome</tag>
+    <tag>japanese</tag>
+    <tag>browsers</tag>
+  </news>
+  <news title="List schemata">
+    <tag>mysql</tag>
+  </news>
+  <news title="Run MySQL script from command line">
+    <tag>mysql</tag>
+    <tag>shell</tag>
+  </news>
+  <news title="Open .MSG attachment in Outlook">
+    <tag>windows</tag>
+    <tag>outlook</tag>
+  </news>
+  <news title="Mount from terminal">
+    <tag>mac</tag>
+    <tag>linux</tag>
+    <tag>ubuntu</tag>
+    <tag>shell</tag>
+  </news>
+  <news title="JQuery vs. plain">
+    <tag>jquery</tag>
+    <tag>javascript</tag>
+  </news>
+  <news title="Empty controls (WCAG1 10.4)">
+    <tag>a11y</tag>
+    <tag>jquery</tag>
+  </news>
+  <news title="See if a known machine is up">
+    <tag>php</tag>
+    <tag>shell</tag>
+    <tag>network</tag>
+  </news>
+  <news title="Reverse history search">
+    <tag>shell</tag>
+  </news>
+  <news title="Indent second line on list item">
+    <tag>css</tag>
+  </news>
+  <news title="Photoshop shortcuts">
+    <tag>photoshop</tag>
+  </news>
+  <news title="Remove link outlines">
+    <tag>css</tag>
+    <tag>firefox</tag>
+  </news>
+  <news title="Graceful degradation of submit">
+    <tag>html</tag>
+    <tag>css</tag>
+    <tag>a11y</tag>
+  </news>
+  <news title="IE hide select option">
+    <tag>ie</tag>
+    <tag>ie6</tag>
+    <tag>html</tag>
+    <tag>javascript</tag>
+  </news>
+  <news title="Alter column PSQL">
+    <tag>postgresql</tag>
+    <tag>sql</tag>
+  </news>
+  <news title="Select random">
+    <tag>mysql</tag>
+    <tag>postgresql</tag>
+  </news>
+  <news title="Set min and max date range (jQuery)">
+    <tag>jquery</tag>
+  </news>
+  <news title="Favicons">
+    <tag>html</tag>
+    <tag>browsers</tag>
+    <tag>ie</tag>
+    <tag>ie6</tag>
+    <tag>photoshop</tag>
+  </news>
+  <news title="Default text with jQuery">
+    <tag>html</tag>
+    <tag>jquery</tag>
+    <tag>usability</tag>
+  </news>
+  <news title="No group by desc">
+    <tag>sql</tag>
+    <tag>mysql</tag>
+    <tag>postgresql</tag>
+    <tag>php</tag>
+  </news>
+  <news title="Googlemaps integration">
+    <tag>javascript</tag>
+    <tag>google</tag>
+    <tag>api</tag>
+    <tag>html</tag>
+  </news>
+  <news title="SELECT .. WHERE .. LIKE">
+    <tag>sql</tag>
+    <tag>postgresql</tag>
+  </news>
+  <news title="Find your way around PostgreSQL">
+    <tag>postgresql</tag>
+    <tag>shell</tag>
+  </news>
+  <news title="PNG transparency for IE6 revisited">
+    <tag>ie6</tag>
+    <tag>css</tag>
+    <tag>transparency</tag>
+  </news>
+  <news title="Quick resize for IE6">
+    <tag>ie6</tag>
+    <tag>javascript</tag>
+  </news>
+  <news title="The Underscore Hack">
+    <tag>css</tag>
+    <tag>ie6</tag>
+  </news>
+  <news title="Secure a directory with htaccess">
+    <tag>apache</tag>
+    <tag>htaccess</tag>
+  </news>
+  <news title="Missing macrons">
+    <tag>xml</tag>
+    <tag>unicode</tag>
+    <tag>type</tag>
+  </news>
+  <news title="Unparsed character data">
+    <tag>xml</tag>
+  </news>
+  <news title="Open popup window from Flash">
+    <tag>flash</tag>
+    <tag>javascript</tag>
+  </news>
+  <news title="Open external links with jQuery">
+    <tag>javascript</tag>
+    <tag>jquery</tag>
+    <tag>html</tag>
+  </news>
+  <news title="Interpret traceroute results">
+    <tag>network</tag>
+    <tag>ubuntu</tag>
+  </news>
+  <news title="E-mail mostly hates CSS">
+    <tag>email</tag>
+    <tag>css</tag>
+  </news>
+  <news title="Re-activate elements on top of transparency">
+    <tag>ie6</tag>
+    <tag>transparency</tag>
+    <tag>css</tag>
+  </news>
+  <news title="Input type=file throws design">
+    <tag>html</tag>
+    <tag>css</tag>
+    <tag>firefox</tag>
+  </news>
+  <news title="Sync system and SMB passwords">
+    <tag>samba</tag>
+    <tag>linux</tag>
+  </news>
+  <news title="Domain terms">
+    <tag>dns</tag>
+  </news>
+  <news title="Web dev tools from Westciv">
+    <tag>css</tag>
+  </news>
+  <news title="Case insensitive attribute selector">
+    <tag>safari</tag>
+    <tag>html</tag>
+    <tag>css</tag>
+  </news>
+  <news title="Input type=image">
+    <tag>ie</tag>
+    <tag>ie6</tag>
+    <tag>html</tag>
+    <tag>javascript</tag>
+  </news>
+  <news title="Mac combos">
+    <tag>mac</tag>
+  </news>
+  <news title="String replace">
+    <tag>perl</tag>
+    <tag>string</tag>
+  </news>
+  <news title="Change current auto increment">
+    <tag>mysql</tag>
+  </news>
+  <news title="Chown a symbolic link">
+    <tag>shell</tag>
+  </news>
+  <news title="Change MySQL password">
+    <tag>mysql</tag>
+  </news>
+  <news title="Change line endings">
+    <tag>perl</tag>
+    <tag>shell</tag>
+  </news>
+  <news title="iPod Touch">
+    <tag>ipod</tag>
+  </news>
+  <news title="Tarball">
+    <tag>shell</tag>
+  </news>
+  <news title="Inner or outer join">
+    <tag>sql</tag>
+    <tag>mysql</tag>
+  </news>
+  <news title="Command line calculator">
+    <tag>shell</tag>
+  </news>
+  <news title="Case sensitive filenames">
+    <tag>mac</tag>
+  </news>
+  <news title="Passwords don't work after DB import">
+    <tag>mysql</tag>
+  </news>
+  <news title="Send XML to a HTTPS">
+    <tag>perl</tag>
+    <tag>xml</tag>
+  <news title="Linux Filesystem Hierarchy">
+    <tag>linux</tag>
+  </news>
+  <news title="Bash scripting">
+    <tag>bash</tag>
+    <tag>mac</tag>
+  </news>
+  <news title="Increment counter in MySQL">
+    <tag>mysql</tag>
+  </news>
+  <news title="Create a new SVN repository">
+    <tag>svn</tag>
+  </news>
+  <news title="undef">
+    <tag>perl</tag>
+  </news>
+  <news title="Hashes pt. 2">
+    <tag>perl</tag>
+  </news>
+  <news title="Date calculations">
+    <tag>mysql</tag>
+  </news>
+  <news title="GNU Screen">
+    <tag>shell</tag>
+  </news>
+  <news title="Symbolic link to a directory">
+    <tag>shell</tag>
+  </news>
+  <news title="Check core temp">
+    <tag>mac</tag>
+  </news>
+  <news title="Postfix: purge deferred in queue">
+    <tag>postfix</tag>
+  </news>
+  <news title="Moving around in vi">
+    <tag>shell</tag>
+    <tag>vi</tag>
+  </news>
+  <news title="Switch between dirs">
+    <tag>shell</tag>
+  </news>
+  <news title="Sans serif sizing">
+    <tag>type</tag>
+  </news>
+  <news title="Add a new user account (Dapper)">
+    <tag>ubuntu</tag>
+  </news>
+  <news title="Set up Email on Ubuntu (Dapper)">
+    <tag>email</tag>
+    <tag>imap</tag>
+    <tag>fetchmail</tag>
+    <tag>ssl</tag>
+    <tag>postfix</tag>
+    <tag>ubuntu</tag>
+  </news>
+  <news title="Dapper setup">
+    <tag>ubuntu</tag>
+    <tag>samba</tag>
+  </news>
+  <news title="Set up Apache2 (Dapper)">
+    <tag>apache</tag>
+    <tag>ubuntu</tag>
+  </news>
+  <news title="Set up Perl for Apache2 (Dapper)">
+    <tag>perl</tag>
+    <tag>ubuntu</tag>
+  </news>
+  <news title="Set up MySQL on Ubuntu (Dapper)">
+    <tag>mysql</tag>
+    <tag>ubuntu</tag>
+  </news>
+  <news title="Add to @INC">
+    <tag>perl</tag>
+  </news>
+  <news title="What version of flash am I using?">
+    <tag>flash</tag>
+  </news>
+  <news title="MySQL select into">
+    <tag>mysql</tag>
+    <tag>sql</tag>
+  </news>
+  <news title="Select..where..in">
+    <tag>mysql</tag>
+    <tag>sql</tag>
+  </news>
+  <news title="Shorthand if">
+    <tag>c</tag>
+    <tag>php</tag>
+    <tag>perl</tag>
+    <tag>javascript</tag>
+  </news>
+  <news title="sprintf">
+    <tag>perl</tag>
+    <tag>php</tag>
+    <tag>c</tag>
+  </news>
+  <news title="Three MySQL treats">
+    <tag>mysql</tag>
+  </news>
+  <news title="Insert a date into MySQL">
+    <tag>mysql</tag>
+  </news>
+  <news title="Make a clean SVN copy for prod">
+    <tag>svn</tag>
+  </news>
+  <news title="Find the hosts file">
+    <tag>mac</tag>
+    <tag>windows</tag>
+  </news>
+  <news title="Remap the other enter key on Macbook">
+    <tag>mac</tag>
+  </news>
+  <news title="Content-type to trigger download">
+    <tag>html</tag>
+    <tag>php</tag>
+  </news>
+  <news title="IMAP folders on Mutt">
+    <tag>imap</tag>
+    <tag>email</tag>
+  </news>
+  <news title="Perl substring, lowercase, uppercase">
+    <tag>perl</tag>
+    <tag>string</tag>
+  </news>
+  <news title="CSS Shorthand">
+    <tag>css</tag>
+  </news>
+  <news title="Ignore files in an SVN working copy">
+    <tag>svn</tag>
+  </news>
+  <news title="Mount a network share with CIFS">
+    <tag>shell</tag>
+  </news>
+  <news title="Pageinate a query">
+    <tag>mysql</tag>
+  </news>
+  <news title="SVN: Create a new working copy">
+    <tag>svn</tag>
+    <tag>shell</tag>
+  </news>
+  <news title="Function arguments in Perl">
+    <tag>perl</tag>
+  </news>
+  <news title="Hashes in Perl (part 1)">
+    <tag>perl</tag>
+  </news>
+  <news title="Here document">
+    <tag>perl</tag>
+    <tag>php</tag>
+  </news>
+  <news title="Light weight Redirect">
+    <tag>html</tag>
+  </news>
+  <news title="Comment something out in MySQL">
+    <tag>mysql</tag>
+  </news>
+  <news title="Format a date with MySQL">
+    <tag>mysql</tag>
+  </news>
+  <news title="Set up synergy using launchd">
+    <tag>mac</tag>
+  </news>
+  <news title="! Grep">
+    <tag>shell</tag>
+  </news>
+  <news title="Backup and restore a MySQL database">
+    <tag>mysql</tag>
+  </news>
+  <news title="Add a new user account to MySQL">
+    <tag>mysql</tag>
+  </news>
+  <news title="Config Mutt to read from IMAP">
+    <tag>imap</tag>
+    <tag>email</tag>
+  </news>
+</index>
+
