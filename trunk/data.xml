@@ -1,0 +1,2926 @@
+<rss version="2.0">
+  <channel>
+    <title>dev_notes</title>
+    <link>http://dev.waitingallday.com/yoyo/</link>
+    <description>
+    Have you ever googled some important code or linux howto, forgotten which language uses elsif or which one requires curly braces (wait, that's the same one) and then lost it, and spent hours trying to figure out how you did something?
+    </description>
+    <managingEditor>jason@waitingallday.com</managingEditor>
+    <language>en-us</language>
+
+    <item>
+      <title>CSS opacity</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/CSS_opacity</guid>
+      <description>
+<![CDATA[
+<p>Part of CSS3 - good for transparency on solid colour:</p>
+<pre>
+div.transparent {
+    filter:alpha(opacity=25);
+    -moz-opacity:.25;
+    opacity:.25;
+
+    background: #000;
+}
+</pre>
+<ol>
+	<li>This is the one for IE6</li>
+	<li>Legacy Firefox</li>
+	<li>Everyone else</li>
+</ol>
+<p>Note: everything in the element is opacified, if you just want it on the background you'll need to float the foreground stuff on top.</p>
+<ul>
+	<li><a href="http://www.mandarindesign.com/opacity.html">http://www.mandarindesign.com/opacity.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 13 Nov 2008 14:55:00</pubDate>
+    </item>
+
+    <item>
+      <title>User management</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/User_management</guid>
+      <description>
+<![CDATA[
+<ol>
+	<li><pre>
+/usr/sbin/useradd -m -s /bin/bash <span style="color:#0d0">user</span>
+</pre></li>
+	<li><pre>
+/usr/bin/passwd <span style="color:#0d0">user</span>
+</pre></li>
+	<li><pre>
+/usr/sbin/visudo
+</pre> or <pre>
+/usr/sbin/usermod -a -G wheel <span style="color:#0d0">user</span>
+</pre></li>
+</ol>
+<p><code>sudo</code> if you don't have <code>su</code>.</p>
+<ul>
+	<li><a href="http://www.g-loaded.eu/2005/11/06/manage-users-from-the-command-line/">http://www.g-loaded.eu/2005/11/06/manage-users-from-the-command-line/</a></li>
+	<li><a href="http://www.mediacollege.com/linux/red-hat/useradd.html">http://www.mediacollege.com/linux/red-hat/useradd.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 6 Nov 2008 12:49:00</pubDate>
+    </item>
+
+    <item>
+      <title>phpMyAdmin import from mysqldump</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/phpMyAdmin_import_from_mysqldump</guid>
+      <description>
+<![CDATA[
+<p>PMA (2.7 at least) cannot interpret <code>/* */</code> comments. I hate it so much.</p>
+
+<p>If you only have access to mysqldump at the export end and PMA at import, use <code>--compact</code> to strip the extra gear.</p>
+]]>
+      </description>
+      <pubDate>Tue, 28 Oct 2008 11:19:00</pubDate>
+    </item>
+
+    <item>
+      <title>Javascript form submit</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Javascript_form_submit</guid>
+      <description>
+<![CDATA[
+<p>You can use Javascript to <code>form.submit()</code> on any visible element in DOM, but just remember to <code>return false;</code> after. If you're clever enough to have used an anchor, it will form submit and then follow the link - but not always in the same order. About 1 in 10 will follow the link first, then submit.</p>
+
+<p>Advice: <code>return false()</code>,  don't fill in the <code>href</code>, or just don't <code>form.submit()</code> on anchors.</p>
+]]>
+      </description>
+      <pubDate>Mon, 27 Oct 2008 10:40:00</pubDate>
+    </item>
+
+    <item>
+      <title>AppleScript comments</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/AppleScript_comments</guid>
+      <description>
+<![CDATA[
+<p>AppleScript comments look like this</p>
+
+<pre>
+(*
+
+ whacky shack
+
+*)
+</pre>
+]]>
+      </description>
+      <pubDate>Tue, 21 Oct 2008 15:40:00</pubDate>
+    </item>
+
+    <item>
+      <title>Convert ISO-8859-1 to UTF-8</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Convert_ISO-8859-1_to_UTF-8</guid>
+      <description>
+<![CDATA[
+<p>As far as I can tell, there is no native way of converting stupid ISO-8859-1 characters that can't be transposed to UTF-8. This would usually be caused by copy + paste from Word.</p>
+
+<pre>
+function iso8859_to_utf($in) {
+	<span style="color:#aaa">// double dash</span>
+	$out = str_replace(chr(150),chr(45),$in);
+	<span style="color:#aaa">// lsquo</span>
+	$out = str_replace(chr(145),chr(39),$out);
+	<span style="color:#aaa">// rsquo</span>
+	$out = str_replace(chr(146),chr(39),$out);
+	<span style="color:#aaa">// ldquo</span>
+	$out = str_replace(chr(147),chr(34),$out);
+	<span style="color:#aaa">// rdquo</span>
+	$out = str_replace(chr(148),chr(34),$out);
+
+	return $out;
+}
+</pre>
+
+<p>These are the most common, I suppose there's a more elegant solution using regular expressions.</p>
+
+<p>I'm not sure why ASCII #150 can't be replaced with U+2014 (&mdash;). Common chars are probably safer though.</p>
+]]>
+      </description>
+      <pubDate>Fri, 17 Oct 2008 14:18:00</pubDate>
+    </item>
+
+    <item>
+      <title>Japanese in Google Chrome</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Japanese_in_Google_Chrome</guid>
+      <description>
+<![CDATA[
+<p>Problem: you cannot see Japanese (or other Asian language) characters in Google Chrome.</p>
+
+<p>Cause: chances are you are using Windows XP and have not installed the East Asian Language pack.</p>
+
+<p>Solution: install the East Asian Language pack.</p>
+
+<p>Firefox has natively supported Asian character rendering for quite some time now, independent of the OS, but Chrome seems to depend on Windows (it's a pity, the rendering in Firefox is much cleaner but do I care enough to spend any more time on this? no).</p>
+
+]]>
+      </description>
+      <pubDate>Thu, 9 Oct 2008 10:30:00</pubDate>
+    </item>
+
+    <item>
+      <title>List schemata</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/List_schemata</guid>
+      <description>
+<![CDATA[
+<pre>
+mysql&gt; show databases;
+</pre>
+
+<p>I have been using PostgreSQL for too long.</p>
+
+]]>
+      </description>
+      <pubDate>Mon, 11 Aug 2008 13:11:00</pubDate>
+    </item>
+
+    <item>
+      <title>Run MySQL script from command line</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Run_MySQL_script_from_command_line</guid>
+      <description>
+<![CDATA[
+<p>I probably don't do this often enough to not forget it.</p>
+
+<pre>
+Peaches:~ peaches$ mysql -p -u<span style="color:#0d0">rootmaybe</span> -D<span style="color:#0d0">schemaname</span> < <span style="color:#0d0">file.sql</span>
+</pre>
+
+<p>...or do I? No I don't.</p>
+
+]]>
+      </description>
+      <pubDate>Mon, 11 Aug 2008 12:55:00</pubDate>
+    </item>
+
+    <item>
+      <title>Open .MSG attachment in Outlook</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/O
+pen__MSG_attachment_in_Outlook</guid>
+      <description>
+<![CDATA[
+<p>Turn off the Google Desktop hooks in Tools > Options > Other > Advanced Options > Add-In Manager and > COM Add-Ins (Outlook 2003 SP3).</p>
+<p>Bad Google.</p>
+]]>
+      </description>
+      <pubDate>Wed, 2 Jul 2008 9:39:00</pubDate>
+    </item>
+
+    <item>
+      <title>Mount from terminal</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Mount_from_terminal</guid>
+      <description>
+<![CDATA[
+<p>For Mac OS X:</p>
+<pre>
+Peaches:~ peaches$ <span style="color:#0d0">mkdir /Volumes/share-name</span>
+Peaches:~ peaches$ <span style="color:#0d0">sudo mount_smbfs //fileserver/share /Volumes/share-name</span>
+Password:
+</pre>
+<p>And when you're done</p>
+<pre>
+Peaches:~ peaches$ <span style="color:#0d0">umount /Volumes/share-name</span>
+</pre>
+<p>OS X doesn't use <code>/etc/fstab</code> for storing share details, but can use a <code>.nsmbrc</code> instead.</p>
+<p>Handy for remote mount/unmount from SSH.</p>
+<p><em>Update:</em> also, for mounting removable media in Ubuntu:</p>
+<pre>
+Peaches:~ peaches$ <span style="color:#0d0">mkdir /mnt/flash</span>
+Peaches:~ peaches$ <span style="color:#0d0">sudo mount /dev/sda1 /mnt/flash</span>
+</pre>
+<p>Unmount the same as above.</p>
+<ul>
+  <li><a href="http://docs.huihoo.com/darwin/opendarwin/articles/osx_smb/ar01s02.html">http://docs.huihoo.com/darwin/opendarwin/articles/osx_smb/ar01s02.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 24 Jun 2008 12:14:00</pubDate>
+    </item>
+
+    <item>
+      <title>JQuery vs. plain</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/JQuery_vs__plain</guid>
+      <description>
+<![CDATA[
+<p>JQuery and standard Javascript can interact (JQuery is a higher level abstraction of standard Javascript anyway), but it's best to stick to one method of DOM access.</p>
+<pre>
+<span style="color:#090">if ($(this).val() == '')</span> <span style="color:#900">this.style.color='#999';</span>
+</pre>
+<p>will work, as will</p>
+<pre>
+<span style="color:#900">if (this.value == '')</span> <span style="color:#090">$(this).css('color', '#999');</span>
+</pre>
+<p>But it should be</p>
+<pre>
+<span style="color:#090">if ($(this).val() == '') $(this).css('color', '#999');</span>
+</pre>
+<p>I do this all the time, and then wonder why <code>$(this).style</code> has no properties..</p>
+]]>
+      </description>
+      <pubDate>Mon, 2 Jun 2008 10:26:00</pubDate>
+    </item>
+
+    <item>
+      <title>Empty controls (WCAG1 10.4)</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Empty_controls__WCAG1_10_4_</guid>
+      <description>
+<![CDATA[
+<p>To meet requirement 10.4, you could use unobtrusive JQuery:</p>
+<pre>
+function defaultText(field) {
+	if ($('#'+field).val() == 'Enter your '+field) {
+		$('#'+field).css('color', '#aaa');
+	}
+
+	$('#'+field).focus(function() {
+		$(this).css('background-color','#ff9');
+		if ($(this).val() == 'Enter your '+field) {
+			$(this).val('');
+			$(this).css('color', '#000');
+		}
+	});
+
+	$('#'+field).blur(function() {
+		$(this).css('background-color','#fff');
+		if ($(this).val() =='') {
+			$(this).val('Enter your '+field);
+			$(this).css('color', '#aaa');
+		}
+	});
+}
+
+var fields = Array('name', 'email', 'phone', 'message');
+for (var i=0; i&lt;fields.length; i++)
+	defaultText(fields[i]);
+</pre>
+<p>Something like that? Then set the ID on the controls to 'xxxx', default value 'Enter your xxxx', and css color <code>#000</code> (so users without Javascript won't need to squint at the form).</p>
+<p>Update: I already did this <a href="http://dev.waitingallday.com/yoyo/Archive/Title/Default_text_with_jQuery">turkey</a> a while ago, but the above is slightly better for functioning it and less obtrusive. And the AJAX-style yellow background: swish.</p>
+]]>
+      </description>
+      <pubDate>Mon, 2 Jun 2008 10:20:00</pubDate>
+    </item>
+
+    <item>
+      <title>See if a known machine is up</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/See_if_a_known_machine_is_up</guid>
+      <description>
+<![CDATA[
+<p>Here's a neat trick, using backticks and laziness:</p>
+
+<pre>
+&lt;?php
+
+
+function down($ip) {
+  $p = `ping -c1 -t1 <span style="color:#d00">$ip</span>`;
+  return rtrim(str_replace('%', '',
+    substr($p, strpos($p, 'eived')+7, 3)));
+}
+
+if (down('10.1.1.6')) echo "uh oh\n";
+
+?&gt;
+</pre>
+
+<p>ie. send one ping to the IP, timeout after 1 second. The resulting string is manipulated to show the number in "100% packet loss" or "0% packet loss" (it will only be 100 or 0 for a single ping, obviously - 100 means it's down, 0 is up).</p>
+]]>
+
+      </description>
+      <pubDate>Fri, 23 May 2008 16:04:00</pubDate>
+    </item>
+
+    <item>
+      <title>Reverse history search</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Reverse_history_search</guid>
+      <description>
+<![CDATA[
+<p>Search through your history (<del>BASH only?</del>) with <code>CTRL + R</code> from the prompt:</p>
+<pre>
+(reverse-i-search)`':
+</pre>
+<p>And then start typing the command.</p>
+]]>
+      </description>
+      <pubDate>Fri, 23 May 2008 10:38:00</pubDate>
+    </item>
+
+    <item>
+      <title>Indent second line on list item</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Indent_second_line_on_list_item</guid>
+      <description>
+<![CDATA[
+<pre>
+li {
+  margin-left: 1em;
+  text-ident: -1em;
+}
+</pre>
+<p>Or something along those lines (matching size).</p>
+
+<ul>
+  <li><a href="http://archivist.incutio.com/viewlist/css-discuss/3622">Eric Meyer tells it like it is</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 19 May 2008 13:59:00</pubDate>
+    </item>
+
+    <item>
+      <title>Photoshop shortcuts</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Photoshop_shortcuts</guid>
+      <description>
+<![CDATA[
+<ul>
+  <li><code>ALT</code> + <code>click</code> on a layer icon to solo the layer.</li>
+  <li><code>CTRL</code> + <code>ENTER</code> inside a text frame to save changes and leave frame.</li>
+</ul>
+
+<p>Absolute life savers.</p>
+]]>
+      </description>
+      <pubDate>Mon, 19 May 2008 11:25:00</pubDate>
+    </item>
+
+    <item>
+      <title>Remove link outlines</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Remove_link_outlines</guid>
+      <description>
+<![CDATA[
+<p>You know those dotted outlines that Firefox puts on links, often breaking the aesthetics of image links?</p>
+
+<pre>
+a { outline:0; }
+</pre>
+
+<ul>
+  <li><a href="http://sonspring.com/journal/removing-dotted-links">A more complete discussion of the dotted link</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 2 May 2008 09:55:00</pubDate>
+    </item>
+
+    <item>
+      <title>Graceful degradation of submit</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Graceful_degradation_of_submit</guid>
+      <description>
+<![CDATA[
+<p>Instead of using <code>type="image"</code>, use a normal <code>type="submit"</code> and apply the image with css <code>background</code>. To get rid of the text, use a negative <code>text-indent</code> on rational browsers or a combination of <code>display:block</code>, <code>overflow:hidden</code> and <code>font-size:1000em</code> (better than <code>font-size:0</code>, trust me).</p>
+
+<form id="graceful-degradation-example" action="" method="post">
+<fieldset style="background:#fff;border:1px dashed #3e3433;padding:0 10px 15px 10px;">
+  <legend style="color:#3e3433;font-size:9px;text-transform:uppercase">Par examplais..</legend>
+  <p><input type="submit" style="border:0;outline:0;background:url(/woot.gif) no-repeat;width:55px;height:25px;overflow:hidden;display:block;font-size:1000em" value="woot!" /></p>
+</fieldset>
+</form>
+
+<p>Go ahead, disable CSS and see for yourself.</p>
+
+<p>Oh yeah crap: doesn't work in Camino.</p>
+
+<ul>
+  <li><a href="http://mydrupalblog.lhmdesign.com/theming-search-submit-button-css-cross-browser-compatible-solution">I got the idea while reading this</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 2 May 2008 09:42:00</pubDate>
+    </item>
+
+    <item>
+      <title>IE hide select option</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/IE_hide_select_option</guid>
+      <description>
+<![CDATA[
+<p>There is no way of setting <code>display:none</code> or similar on a <code>select option</code> in IE (6 + 7). Can't we all just be friends?</p>
+
+<p><del>Solutions to follow.</del> There are probably two good ways to solve this: use AJAX to recreate the list after each click, or an <code>Array</code> of data structure <code>Object</code>s on page in javascript to do it (my preference).</p>
+
+<p>After writing that data somewhere, do some jQuery like</p>
+
+<pre>
+$(<span style="color:#d00">#first select</span>).change(function() {
+  $(<span style="color:#0d0">#second select</span>).html('&lt;option&gt;Select&lt;/option&gt;');
+  <span style="color:#999">// clears the list and sets a default label</span>
+
+  for (var i=0; i&lt;<span style="color:#00d">arr</span>.length; i++)
+    if ($(this).val() == <span style="color:#00d">arr</span>[i].some_code)
+      $(<span style="color:#0d0">#second select</span>).append('&lt;option value="' + <span style="color:#00d">arr</span>[i].sub_code
+        + '"&gt;' + <span style="color:#00d">arr</span>[i].sub_label + '&lt;/option&gt;');
+});
+</pre>
+
+<p style="display:none">Not very exciting. It's an ending, that's enough.</p>
+
+<ul>
+  <li><a href="http://codylindley.com/Webdev/315/ie-hiding-option-elements-with-css-and-dealing-with-innerhtml">Not much help, but at least they have the same problem</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 28 Apr 2008 14:04:00</pubDate>
+    </item>
+
+    <item>
+      <title>Alter column PSQL</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Alter_column_PSQL</guid>
+      <description>
+<![CDATA[
+<p>Note: spend more time on the database structure in the first place.</p>
+
+<pre>
+ALTER TABLE <span style="color:#d00">product</span>
+  ADD COLUMN <span style="color:#d00">product_price</span>
+  CHARACTER VARYING(8)
+  NOT NULL
+  DEFAULT 0;
+</pre>
+
+<p>and don't forget to</p>
+
+<pre>
+UPDATE <span style="color:#d00">product</span> SET <span style="color:#d00">product_price</span>=0;
+</pre>
+
+<p>Oh crap too small</p>
+
+<pre>
+ALTER TABLE <span style="color:#d00">product</span>
+  ALTER COLUMN <span style="color:#d00">product_price</span>
+  TYPE CHARACTER VARYING(64);
+</pre>
+
+<ul>
+  <li><a href="http://www.postgresql.org/docs/7.1/static/sql-altertable.html">http://www.postgresql.org/docs/7.1/static/sql-altertable.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 24 Apr 2008 13:32:00</pubDate>
+    </item>
+
+    <item>
+      <title>Select random</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Select_random</guid>
+      <description>
+<![CDATA[
+<p>Revisiting the <code>ORDER BY RAND()</code> for MySQL, the equivalent for PostgreSQL is <code>ORDER BY RANDOM()</code>. Sigh.</p>
+]]>
+      </description>
+      <pubDate>Thu, 17 Apr 2008 15:01:00</pubDate>
+    </item>
+
+    <item>
+      <title>Set min and max date range (jQuery)</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Set_min_and_max_date_range__jQuery_</guid>
+      <description>
+<![CDATA[
+<p>If you want to restrict a user to a specified date range using the <em>ui.datepicker</em> jQuery component:</p>
+
+<pre>
+$(function() {
+  $.datepicker.setDefaults({dateFormat: 'dd M yy'});
+  $.datepicker.setDefaults({minDate: new Date('15 Apr 2008')});
+  $.datepicker.setDefaults({maxDate: new Date('18 Apr 2008')});
+  $('input.date-picker').datepicker();
+});
+</pre>
+
+<script type="text/javascript">
+$(function() {
+	$.datepicker.setDefaults({dateFormat: 'dd M yy'});
+	$.datepicker.setDefaults({minDate: new Date('15 Apr 2008')});
+	$.datepicker.setDefaults({maxDate: new Date('18 Apr 2008')});
+	$('input#startdate').datepicker();
+});
+</script>
+
+<form id="date-example" action="" method="post">
+<fieldset style="background:#dff0f3;border:1px dashed #3e3433;padding:0 10px 15px 10px;">
+  <legend style="color:#3e3433;font-size:9px;text-transform:uppercase">Par examplais..</legend>
+  <p><label for="startdate" style="position:absolute;margin-top:20px;text-transform:uppercase;font-size:9px;color:#000">Start date</label><input id="startdate" style="padding:1px 2px;width:300px;" type="text" value="15 Apr 2008" /> <input type="submit" disabled="disabled" value="Go man" /></p>
+</fieldset>
+</form>
+
+<ul>
+  <li><a href="http://docs.jquery.com/UI/Datepicker/datepicker#options">http://docs.jquery.com/UI/Datepicker/datepicker#options</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 16 Apr 2008 12:55:00</pubDate>
+    </item>
+
+    <item>
+      <title>Favicons</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Favicons</guid>
+      <description>
+<![CDATA[
+<p>The following will work under any modern browser (IE included):</p>
+
+<pre>
+&lt;link rel="shortcut icon" href="/favicon.ico"
+  type="image/vnd.microsoft.icon" /&gt;
+&lt;link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" /&gt;
+</pre>
+
+<ol>
+  <li><code>link</code> must be inside <code>head</code></li>
+  <li><code>/favicon.ico</code> is a legacy name and path that older browsers will sniff regardless of the above code</li>
+  <li><code>type</code> may be <code>image/gif</code> or <code>image/png</code> (but it doesn't work in IE)</li>
+</ol>
+
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Favicon">A useful page on the Wikipedia (..SRSLY?)</a></li>
+  <li><a href="http://www.telegraphics.com.au/sw/">Free ICO import/export plugin for Photoshop (works in CS3 Win)</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 16 Apr 2008 12:42:00</pubDate>
+    </item>
+
+    <item>
+      <title>Default text with jQuery</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Default_text_with_jQuery</guid>
+      <description>
+<![CDATA[
+<p>Usability tip:</p>
+
+<ol>
+  <li>At page load list default text, greyed out</li>
+  <li>On input focus change colour to black and remove default text</li>
+  <li>If box is empty when user leaves input, replace default text and grey out, otherwise leave what user has entered in black</li>
+</ol>
+
+<form action="" method="post">
+<fieldset style="background:#dff0f3;border:1px dashed #3e3433;padding:0 10px 15px 10px;">
+  <legend style="color:#3e3433;font-size:9px;text-transform:uppercase">Par examplais..</legend>
+  <p><label for="searchterm" style="position:absolute;margin-top:20px;text-transform:uppercase;font-size:9px;color:#000">Keyword</label><input id="searchterm" style="color:#999;padding:1px 2px;width:300px;" type="text" value="Enter keywords" /> <input type="submit" disabled="disabled" value="Search" /></p>
+</fieldset>
+</form>
+
+<p><code>label</code> is a handy element to include also, I didn't realise this before but clicking a <code>label</code> gives focus to the input it's <code>for</code>. Earlier versions of Safari didn't do this, for some reason (IE 6 does?).</p>
+
+<pre>
+$(function() {
+  $('#searchterm').focus(function() {
+    if ($(this).val() == 'Enter keywords') {
+      $(this).val(''); this.style.color = '#000';
+    }
+  });
+  $('#searchterm').blur(function() {
+    if (this.value=='') {
+      this.value='Enter keywords';
+      this.style.color = '#999';
+    }
+  });
+});
+</pre>
+
+<p>I'd probably oneline them.. but that's just me. Obviously the original input would have <code>value="Search"</code> and <code>color:#999;</code> to start with.</p>
+
+<p>I suppose you could even <code>disabled="disabled"</code> the submit button if the default text is displayed.</p>
+]]>
+      </description>
+      <pubDate>Mon, 14 Apr 2008 11:29:00</pubDate>
+    </item>
+
+    <item>
+      <title>No group by desc</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/No_group_by_desc</guid>
+      <description>
+<![CDATA[
+<p>No, there is no <code>GROUP BY <span style="color:#d00">key</span> DESC</code>. Just run the query and reverse the result (<code>krsort</code> for PHP).</p>
+]]>
+      </description>
+      <pubDate>Wed, 9 Apr 2008 15:29:00</pubDate>
+    </item>
+
+    <item>
+      <title>Googlemaps integration</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Googlemaps_integration</guid>
+      <description>
+<![CDATA[
+<p>Simple integration for Googlemaps (the first <code>script</code> tag contains a URL string, broken here to fit on screen):</p>
+<pre>
+&lt;script src="http://maps.google.com/maps?file=api&amp;v=2&amp;
+  key=<span style="color:#d00">ABQIAAAAz2glLiCZA9cwx_W7F15_dxRw7z9gIfJXBTlxiGNDDGfPz8RNfRQLqNo
+  3TCLFxRbVAeQCAfOmMffm1w</span>" type="text/javascript"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+//&lt;![CDATA[
+
+if (GBrowserIsCompatible()) {
+  var mapAddress = new GMap2(document.getElementById("<span style="color:#00d">mapAddress</span>"));
+  mapAddress.setCenter(new GLatLng(<span style="color:#0d0">geocode ref</span>, <span style="color:#0d0">zoom factor</span>);
+  mapAddress.addControl(new GSmallMapControl());
+  var labelAddress = "<span style="color:#0d0">&lt;strong&gt;Label&lt;/strong&gt;&lt;br /&gt;Can use HTML</span>";
+  var markerAddress = new GMarker(mapAddress.getCenter());
+  GEvent.addListener(markerAddress, "click", function() {
+    markerAddress.openInfoWindowHtml(labelAddress);
+  });
+  mapAddress.addOverlay(markerAddress);
+}
+
+//]]&gt;
+&lt;/script&gt;
+</pre>
+<ol>
+  <li>Place the empty <code>mapAddress</code> div referred to above where you want it on the page (I've cleverly/confusingly used the same name for the div and var..)</li>
+  <li>The script call can go anywhere, make sure the API key is correct for the target site</li>
+  <li>Apply CSS to the div for sizing, if it's smaller than 400 or so pixels wide, you'll probably want to add</li>
+</ol>
+<pre>
+div#mapAddress span {
+  overflow: hidden;
+}
+</pre>
+<p><em>Other notes:</em></p>
+<p><strong>Geocode</strong> coordinates look something like <code>-37.831924,144.952658</code> (latitude, longitude). <code>13</code> is a fairly good <strong>zoom factor</strong> for Australian metro maps.</p>
+<p>Each different URL (&amp; subdomain) needs a new API key.</p>
+<ul>
+  <li><a href="http://code.google.com/apis/maps/signup.html">API key signup</a></li>
+  <li><a href="http://code.google.com/apis/maps/documentation/reference.html">API reference</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 8 Apr 2008 09:51:00</pubDate>
+    </item>
+
+    <item>
+      <title>SELECT .. WHERE .. LIKE</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/SELECT____WHERE____LIKE</guid>
+      <description>
+<![CDATA[
+<p>Today's lesson in forgotten SQL lore: <code>SELECT</code> .. <code>WHERE</code> .. <code>LIKE</code>.</p>
+
+<pre>
+SELECT some_field
+FROM a_table
+WHERE lower(selector_field) <span style="color:#900">LIKE lower('%keyword%')</span>
+</pre>
+
+<p>This will work on pretty much any SQL.</p>
+
+<p><code>%</code> indicates 0 or more unspecified chars, or you could use <code>_</code> for exactly one char. Enclose the whole string (with wildcards) in <code>'</code>s. Use <code>lower</code> to check apples with apples.</p>
+
+<p>PSQL also has:</p>
+
+<table>
+<tbody>
+<tr>
+  <th>this</th>
+  <th>is the same as</th>
+</tr>
+<tr>
+  <td><code>ILIKE</code></td>
+  <td>Case insensitive <code>LIKE</code> (same as <code>lower</code>ing both operands)</td>
+</tr>
+<tr>
+  <td><code>~~</code></td>
+  <td><code>LIKE</code></td>
+</tr>
+<tr>
+  <td><code>~~*</code></td>
+  <td><code>ILIKE</code></td>
+</tr>
+<tr>
+  <td><code>!~~</code></td>
+  <td><code>NOT LIKE</code></td>
+</tr>
+<tr>
+  <td><code>!~~*</code></td>
+  <td><code>NOT ILIKE</code></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+  <li><a href="http://archives.postgresql.org/pgsql-general/1998-09/msg00024.php">"This is what happens when you put SQL source code in the hands of a bunch of Unix hacks"</a></li>
+  <li><a href="http://www.postgresql.org/docs/7.4/static/functions-matching.html">http://www.postgresql.org/docs/7.4/static/functions-matching.html</a></li>  
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 3 Apr 2008 14:08:00</pubDate>
+    </item>
+
+    <item>
+      <title>Find your way around PostgreSQL</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Find_your_way_around_PostgreSQL</guid>
+      <description>
+<![CDATA[
+<p>It's just like MySQL or Oracle. Only, it's not.</p>
+<table>
+<tbody>
+<tr>
+  <th>this</th>
+  <th>does this</th>
+</tr>
+<tr>
+  <td><code>\d</code></td>
+  <td><code>desc</code> a database object (<code>\dt</code> for tables only)</td>
+</tr>
+<tr>
+  <td><code>\l</code></td>
+  <td>List the schemas or "databases" or whatever</td>
+</tr>
+<tr>
+  <td><code>\c</code></td>
+  <td>Connect to a different schema</td>
+</tr>
+<tr>
+  <td><code>\?</code></td>
+  <td>A lot more useful than <code>\h</code></td>
+</tr>
+<tr>
+  <td><code>\q</code></td>
+  <td>Quit</td>
+</tr>
+</tbody>
+</table>
+<p>PSQL doesn't seem to mind <code>\command</code> without semi-colons, but SQL will continue to the next line without one. (ie. don't forget to <code>;</code>)</p>
+]]>
+      </description>
+      <pubDate>Wed, 2 Apr 2008 13:34:00</pubDate>
+    </item>
+
+    <item>
+      <title>PNG transparency for IE6 revisited</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/PNG_transparency_for_IE6_revisited</guid>
+      <description>
+<![CDATA[
+<p>When using the <code>AlphaImageLoader</code> filter, the <code>src</code> can use either relative or absolute path, and despite most scripts using <code>sizingMethod</code>, the default value (<code>image</code>) is probably what you want to use anyway. Other values are <code>crop</code> and <code>scale</code> (for repeating backgrounds).</p>
+<p>There is a boolean attribute <code>enabled</code>, but it defaults to <code>true</code> anyway.</p>
+<pre>
+.png {
+  background:none;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(
+    src='/absolute/path/to/image.png');
+  cursor:pointer; <span style="color:#aaa">/* if it's a link */</span>
+}
+</pre>
+
+<ul>
+  <li><a href="http://msdn2.microsoft.com/en-us/library/ms532969(VS.85).aspx">http://msdn2.microsoft.com/en-us/library/ms532969(VS.85).aspx</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 28 Mar 2008 11:30:00</pubDate>
+    </item>
+
+    <item>
+      <title>Quick resize for IE6</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Quick_resize_for_IE6</guid>
+      <description>
+<![CDATA[
+<p>I can't get the bookmarklet working on IE6, so resize outer window dimensions to <a href="javascript:self.resizeTo(1024,768);">1024x768</a>.</p>
+]]>
+      </description>
+      <pubDate>Wed, 26 Mar 2008 10:31:00</pubDate>
+    </item>
+
+    <item>
+      <title>The Underscore Hack</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/The_Underscore_Hack</guid>
+      <description>
+<![CDATA[
+<p>Another way of selecting out lt IE 7:</p>
+<pre>
+div {
+  min-height:100px;
+  height:auto;
+  <span style="color:#900">_height:100px;</span>
+}
+</pre>
+
+<ul>
+  <li><a href="http://wellstyled.com/singlelang.php?lang=en&amp;page=css-underscore-hack.html">http://wellstyled.com/singlelang.php?lang=en&amp;age=css-underscore-hack.html</a></li>
+  <li>Found while puzzling over <a href="http://www.satzansatz.de/cssd/onhavinglayout.html">http://www.satzansatz.de/cssd/onhavinglayout.html</a></li>
+</ul>
+
+]]>
+      </description>
+      <pubDate>Tue, 25 Mar 2008 16:45:00</pubDate>
+    </item>
+
+    <item>
+      <title>Secure a directory with htaccess</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Secure_a_directory_with_htaccess</guid>
+      <description>
+<![CDATA[
+<p>In the <code>.htaccess</code> file:</p>
+<pre>
+AuthUserFile /usr/local/you/safedir/.htpasswd
+AuthGroupFile /dev/null
+AuthName PasswordSecuredArea
+AuthType Basic
+
+require user <span style="color:#900">username</span>
+</pre>
+
+<ul>
+  <li><a href="http://www.javascriptkit.com/howto/htaccess.shtml">http://www.javascriptkit.com/howto/htaccess.shtml</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 17 Mar 2008 14:40:00</pubDate>
+    </item>
+
+    <item>
+      <title>Missing macrons</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Missing_macrons</guid>
+      <description>
+<![CDATA[
+<p>My <a href="http://dev.waitingallday.com/yoyo/char/">entity ref</a> sheet is missing macrons - I don't think they have entity abbreviations, so here's the unicode code points in hex (followed by decimal):</p>
+<table>
+<tbody>
+<tr>
+  <th>Character</th><th>Unicode code point</th>
+</tr>
+<tr>
+  <td>&#256;</td><td>U+0100 (256)</td>
+</tr>
+<tr>
+  <td>&#257;</td><td>U+0101 (257)</td>
+</tr>
+<tr>
+  <td>&#258;</td><td>U+0102 (258)</td>
+</tr>
+<tr>
+  <td>&#259;</td><td>U+0103 (259)</td>
+</tr>
+
+<tr>
+  <td>&#274;</td><td>U+0112 (274)</td>
+</tr>
+<tr>
+  <td>&#275;</td><td>U+0113 (275)</td>
+</tr>
+<tr>
+  <td>&#276;</td><td>U+0114 (276)</td>
+</tr>
+<tr>
+  <td>&#277;</td><td>U+0115 (277)</td>
+</tr>
+
+<tr>
+  <td>&#298;</td><td>U+012A (298)</td>
+</tr>
+<tr>
+  <td>&#299;</td><td>U+012B (299)</td>
+</tr>
+<tr>
+  <td>&#300;</td><td>U+012C (300)</td>
+</tr>
+<tr>
+  <td>&#301;</td><td>U+012D (301)</td>
+</tr>
+
+<tr>
+  <td>&#332;</td><td>U+014C (332)</td>
+</tr>
+<tr>
+  <td>&#333;</td><td>U+014D (333)</td>
+</tr>
+<tr>
+  <td>&#334;</td><td>U+014E (334)</td>
+</tr>
+<tr>
+  <td>&#335;</td><td>U+014F (335)</td>
+</tr>
+
+<tr>
+  <td>&#362;</td><td>U+016A (362)</td>
+</tr>
+<tr>
+  <td>&#363;</td><td>U+016B (363)</td>
+</tr>
+<tr>
+  <td>&#364;</td><td>U+016C (364)</td>
+</tr>
+<tr>
+  <td>&#365;</td><td>U+016D (365)</td>
+</tr>
+
+<tr>
+  <td>&#562;</td><td>U+0232 (562)</td>
+</tr>
+<tr>
+  <td>&#563;</td><td>U+0233 (563)</td>
+</tr>
+</tbody>
+</table>
+
+<p>(I just wanted to say <em>macron</em>)</p>
+
+<ul>
+  <li><a href="http://scholarsfonts.net/macronwb.htm">http://scholarsfonts.net/macronwb.htm</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 11 Mar 2008 16:16:00</pubDate>
+    </item>
+
+
+    <item>
+      <title>Unparsed character data</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Unparsed_character_data</guid>
+      <description>
+<![CDATA[
+<p>Before you forget again:</p>
+<pre>
+&lt;![CDATA[
+  blah blah lots of &amp; and &lt;
+]]&gt;
+</pre>
+<p>(that's bang-square-CDATA-square)</p>
+]]>
+      </description>
+      <pubDate>Thu, 6 Mar 2008 11:36:00</pubDate>
+    </item>
+
+    <item>
+      <title>Open popup window from Flash</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Open_popup_window_from_Flash</guid>
+      <description>
+<![CDATA[
+<p>Use Javascript to control all elements of the popup window:</p>
+<pre>
+<span style="color:#d00">Actionscript 2.0</span>
+var jscommand:String = "window.open('http://www.adobe.com',
+ 'win','height=200,width=300,toolbar=no,scrollbars=yes');";
+getURL("javascript:" + jscommand + " void(0);");
+</pre>
+<ul>
+  <li><a href="http://kb.adobe.com/selfservice/viewContent.do?externalId=tn_14192">http://kb.adobe.com/selfservice/viewContent.do?externalId=tn_14192</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 5 Mar 2008 14:08:00</pubDate>
+    </item>
+
+
+    <item>
+      <title>Open external links with jQuery</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Open_external_links_with_jQuery</guid>
+      <description>
+<![CDATA[
+<p>To replace those nasty <code>target="_blank"</code>s, use some simple jQuery to intercept and <code>window.open</code> the link.</p>
+<pre>
+$(function() {
+  $('a.target_blank').each(function() {
+    $(this).click(function(){window.open(this.href);return false;});
+  });
+});
+</pre>
+<p>You could use a better selector than <code>.target_blank</code>, but that one is a pretty clear signal to other developers.</p>
+<p>Also</p>
+<pre>
+$('a[@href^=http]').each(function() { ... });
+</pre>
+<p>could be useful to open new windows only for external URLs (ie. those starting with http).</p>
+<p>And finally</p>
+<pre>
+$('a[@href^$=pdf]').each(function() { ... });
+</pre>
+<p>for PDFs.</p>
+]]>
+      </description>
+      <pubDate>Fri, 29 Feb 2008 10:38:00</pubDate>
+    </item>
+
+    <item>
+      <title>Interpret traceroute results</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Interpret traceroute results</guid>
+      <description>
+<![CDATA[
+<pre>
+traceroute to 203.21.79.47 (203.21.79.47), 30 hops max, 40 byte packets
+ 1  mygateway1.ar7 (10.1.1.1)  0.561 ms  0.867 ms  0.446 ms
+ 2  203.24.101.23 (203.24.101.23)  21.850 ms  9.978 ms  10.098 ms
+ 3  vic-gw.aanet.com.au (203.123.72.65)  10.555 ms  10.255 ms  11.236 ms
+ 4  AS9837.melbourne.pipenetworks.com (218.100.13.25)  10.119 ms  11.445 ms
+  12.559 ms
+ 5  vmelbcust01-ge01.powertel.net.au (202.92.64.169)  11.718 ms  11.209 ms
+  11.775 ms
+ 6  vMELBcore04-ge0119.powertel.net.au (202.138.192.24)  21.423 ms  11.326 ms
+  11.755 ms
+ 7  serial4-cbw-gw.join.net.au (202.138.207.130)  14.244 ms  15.941 ms 
+  14.652 ms
+ 8  serial2-cbw-gw.join.net.au (61.95.1.170)  14.507 ms  17.720 ms  14.694 ms
+ 9  mel (203.21.79.47)  17.727 ms !C  14.394 ms !C  15.320 ms !C
+</pre>
+<p>First of all, Ubuntu (Dapper) didn't come with <code>traceroute</code> in the core installation. Huh? It has <code>traceroute6</code>, but not the more useful IPv4 sibling. Future proofing gone mad.</p>
+<p>A handy translation of the above would be:</p>
+<pre>
+[hop #] [FQDN] ([IP]) [packet 1] [packet 2] [packet 3]
+</pre>
+<p>Each line lists the details of the node and then the <strong>round trip</strong> time in milliseconds for each of three packets to reach that node and return. Other results following the time might include:</p>
+<table>
+  <tr><th>Flag</th><th>What?</th></tr>
+  <tr><td>!H, !N, or !P</td><td>host, network  or  protocol unreachable</td></tr>
+  <tr><td>!A</td><td>access to the network is prohibited</td></tr>
+  <tr><td>!C</td><td>access to the host is  prohibited</td></tr>
+  <tr><td>!S</td><td>source  route  failed</td></tr>
+  <tr><td>!F-&lt;pmtu&gt;</td><td>fragmentation needed, the RFC1191 Path MTU Discovery value is displayed</td></tr>
+  <tr><td>!X</td><td>communication administratively prohibited</td></tr>
+  <tr><td>!V</td><td>host precedence  violation</td></tr>
+  <tr><td>!C</td><td>precedence  cutoff  in effect</td></tr>
+  <tr><td>!&lt;num&gt;</td><td>ICMP unreachable code &lt;num&gt;</td></tr>
+</table>
+<p><em>* Taken from <code>man</code> pages.. why are there two definitions for !C?</em></p>
+<ul>
+  <li><a href="http://www.hostingmanual.net/troubles/pr_traceroute.html">http://www.hostingmanual.net/troubles/pr_traceroute.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 20 Feb 2008 09:31:00</pubDate>
+    </item>
+
+    <item>
+      <title>E-mail mostly hates CSS</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/E_mail_mostly_hates_CSS</guid>
+      <description>
+<![CDATA[
+<ol>
+  <li>Hotmail and GMail do not recognise the <code>style</code> tag, so no global styles. Just apply them to every block-level element instead.</li>
+  <li>All e-mail clients (including Hotmail and GMail) have their own ideas on default padding &amp; margins and font styles. Reset everything for consistency.</li>
+  <li>Tables are easier to fit with image-based e-mails and calculated slicing. Make like it's 1999.</li>
+  <li>Include as many text alternatives as possible (alt, title tags, multi-part encoding, online version).</li>
+  <li>Outlook 2007: don't go there.</li>
+</ol>
+
+<ul>
+  <li><a href="http://www.campaignmonitor.com/blog/archives/2007/04/a_guide_to_css_support_in_emai_2.html">The unchallenged masters of E-mail fu, Campaign Monitor</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 19 Feb 2008 11:31:00</pubDate>
+    </item>
+
+
+    <item>
+      <title>Re-activate elements on top of transparency</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/Re_activate_elements_on_top_of_transparency</guid>
+      <description>
+<![CDATA[
+<p>That old chestnut, the IE6 alpha transparency (PNG) fix, causes all elements layered on top to lose their interactivity, so when fixing transparent backgrounds the interactive elements (link, form) need <code>hasLayout</code> by applying <code>position:relative</code>.</p>
+<p>Note: it doesn't always work.</p>
+<p>For reference, the <code>filter</code> code:</p>
+<pre>
+.PNGbackground {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+    enabled=true,
+    sizingMethod=scale,
+    src='<span style="color:#f00">bg.png</span>');
+}
+</pre>
+<ul>
+  <li><a href="http://24ways.org/2007/supersleight-transparent-png-in-ie6">http://24ways.org/2007/supersleight-transparent-png-in-ie6</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 19 Feb 2008 11:20:00</pubDate>
+    </item>
+
+
+    <item>
+      <title>Input type=file throws design</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Input_type_file_throws_design</guid>
+      <description>
+<![CDATA[
+<p><code>&lt;input type="file" /&gt;</code> can cause a few issues in keeping to a fixed design layout, namely that all browsers (and OSes) render the element differently to some degree. The worst offender is Firefox - it appears to ignore the select button in any width calculation, potentially throwing out a design where <code>width:100%</code> is specified.</p>
+<p>There are javascript workarounds, but it's probably best to try working with a minimal width file input instead and work the design around it. More on this later?</p>
+<ul>
+  <li><a href="http://www.quirksmode.org/dom/inputfile.html">http://www.quirksmode.org/dom/inputfile.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 21 Nov 2007 10:27:00</pubDate>
+    </item>
+
+    <item>
+      <title>Sync system and SMB passwords</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Sync_system_and_SMB_passwords</guid>
+      <description>
+<![CDATA[
+<p>Use the <code>pam_smbpass</code> PAM module - add this line to <code>/etc/pam.d/system-auth</code> after the <code>pam_cracklib.so</code> call:</p>
+<pre>
+password required /lib/security/pam_smbpass.so
+ nullok use_authtok try_first_pass</pre>
+<p>(worked fine on Red Hat, not tested on Ubuntu yet)</p>
+<ul>
+  <li><a href="http://www.redhat.com/docs/manuals/linux/RHL-8.0-Manual/custom-guide/s1-samba-configuring.html">Red Hat samba configuration docs</a></li>
+  <li><a href="http://jaka.kubje.org/wp/2007/05/14/unix-samba-password-sync-on-debian-etch/">Instructions for Ubuntu (untested)</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 10 Nov 2007 12:27:00</pubDate>
+    </item>
+
+    <item>
+      <title>Domain terms</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Domain_terms</guid>
+      <description>
+<![CDATA[
+<p>A few terms that I keep forgetting:</p>
+<ul>
+  <li><em>Add-on domain</em>, a domain that conceals the target it redirects to.</li>
+  <li><em>Parked domain</em>, redirects to the target domain.</li>
+  <li><em>A record</em>, maps the hostname to an IPv4 address.</li>
+  <li><em>AAAA record</em>, as above but for IPv6.</li>
+  <li><em>CNAME record</em>, an alias.</li>
+  <li><em>MX record</em>, mail exchange.</li>
+  <li><em>NS record</em>, name servers of delegation authority.</li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 9 Nov 2007 14:32:00</pubDate>
+    </item>
+
+    <item>
+      <title>Web dev tools from Westciv</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Web_dev_tools_from_Westciv</guid>
+      <description>
+<![CDATA[
+<p>As if their <a href="http://westciv.com/style_master/academy/css_tutorial/index.html">Complete CSS guide</a> weren't enough, the good folks at Westciv now have a pair of free CSS inspection tools:</p>
+<ul>
+  <li><a href="http://westciv.com/xray/index.html">XRAY</a> for dimensions</li>
+  <li><a href="http://westciv.com/mri/index.html">MRI</a> for selectors</li>
+</ul>
+<p>Now everybody can make like they're using Webkit/Xylescope/Firefox with web developer!</p>
+]]>
+      </description>
+      <pubDate>Tue, 7 Nov 2007 14:44:00</pubDate>
+    </item>
+
+    <item>
+      <title>Case insensitive attribute selector</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Case_insensitive_attribute_selector</guid>
+      <description>
+<![CDATA[
+<p>It appears that all versions of Safari are <em>case insensitive</em> when accessing CSS attribute selectors. An example, CSS first:</p>
+<pre>
+p[title="caption"] { color:#999; font-style:italic; }
+</pre>
+<p>And HTML:</p>
+<pre>
+&lt;p title="captioN">This caption will be gray in Safari only!&lt;/p&gt;
+</pre>
+<p>In all other CSS-compatible modern browsers, this would not match since the case is different between CSS and HTML, but Safari will match it regardless.</p>
+<p>This could be useful for separating out Safari-specific styles, as with <a href="http://www.info.com.ph/~etan/w3pantheon/style/starhtmlbug.html">* html</a>.</p>
+
+<ul>
+  <li><a href="http://www.christopherschmitt.com/2007/11/02/css-attribute-selector-bug-in-safari/">http://www.christopherschmitt.com/2007/11/02/css-attribute-selector-bug-in-safari/</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 7 Nov 2007 14:23:00</pubDate>
+    </item>
+
+    <item>
+      <title>Input type=image</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Input_type_image</guid>
+      <description>
+<![CDATA[
+<p>Here's an odd one. IE6/7 browsers do not pass the value of an input, type=image. It's uncommon, but you may want to have multiple submit points to a single form that each trigger a different response, and let's just say that you want to use an image for each of these submit points.</p>
+<p>A good demonstration of this can be found at</p>
+<ul>
+  <li><a href="http://krijnhoetmer.nl/stuff/html/input-type-image-value/">http://krijnhoetmer.nl/stuff/html/input-type-image-value/</a></li>
+</ul>
+<p>The Javascript solution included on this page is a great workaround, but note that it will require some localised config. I included this javascript in a global JS file, and added an <code>if</code> clause before the <code>for</code> to check that the element exists before the replacement action.</p>
+]]>
+      </description>
+      <pubDate>Tue, 7 Nov 2007 14:03:00</pubDate>
+    </item>
+
+    <item>
+      <title>Mac combos</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Mac_combos</guid>
+      <description>
+<![CDATA[
+<table>
+<tr>
+  <th>Combo</th>
+  <th>When</th>
+  <th>Move</th>
+</tr>
+<tr>
+  <td>c</td>
+  <td>at boot</td>
+  <td>Boot from CD/DVD</td>
+</tr>
+<tr>
+  <td>cmd+shift+delete</td>
+  <td>finder</td>
+  <td>Empty trash</td>
+</tr>
+<tr>
+  <td>cmd+opt+esc</td>
+  <td>anywhere</td>
+  <td>Force quit current app</td>
+</tr>
+<tr>
+  <td>cmd+shift+3</td>
+  <td>anywhere</td>
+  <td>Take fullscreen shot</td>
+</tr>
+<tr>
+  <td>cmd+shift+4</td>
+  <td>anywhere</td>
+  <td>Drag area screen shot</td>
+</tr>
+</table>
+<ul>
+  <li><a href="http://davespicks.com/writing/programming/mackeys.html">http://davespicks.com/writing/programming/mackeys.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 31 Oct 2007 10:56:00</pubDate>
+    </item>
+
+    <item>
+      <title>String replace</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?String_replace</guid>
+      <description>
+<![CDATA[
+<p>Two different methods for Perl:</p>
+<pre>
+$string =~ s/<span style="color:#0d0">search</span>/<span style="color:#d00">replace</span>/g;
+$string =~ tr/<span style="color:#0d0">char</span>/<span style="color:#d00">replace</span>/;
+</pre>
+<ul>
+  <li><a href="http://www.htmlite.com/perl025c.php">http://www.htmlite.com/perl025c.php</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 29 Oct 2007 14:04:00</pubDate>
+    </item>
+
+    <item>
+      <title>Change current auto increment</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Change_current_auto_increment</guid>
+      <description>
+<![CDATA[
+<p>If you need to wind back an auto increment, or begin counting from some arbitrary starting point <em>after</em> the table has been defined</p>
+<pre>
+ALTER TABLE <span style="color:#0d0">table</span> AUTO_INCREMENT = 100;
+</pre>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.0/en/example-auto-increment.html">http://dev.mysql.com/doc/refman/5.0/en/example-auto-increment.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 27 Oct 2007 14:02:00</pubDate>
+    </item>
+
+    <item>
+      <title>Chown a symbolic link</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Chown_a_symbolic_link</guid>
+      <description>
+<![CDATA[
+<p>Include the <code>-h</code> parameter</p>
+<pre>
+sudo chown -h <span style="color:#0d0">user:group</span> symlink
+</pre>
+<p>or it will just go and change the target of the reference. Smrt!</p>
+]]>
+      </description>
+      <pubDate>Fri, 16 Oct 2007 10:44:00</pubDate>
+    </item>
+
+    <item>
+      <title>Change MySQL password</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Change_MySQL_password</guid>
+      <description>
+<![CDATA[
+<p>Change a user password at console with</p>
+<pre>
+SET PASSWORD FOR '<span style="color:#0d0">user</span>'@'%' = PASSWORD('<span style="color:#0d0">newpass</span>');
+</pre>
+<p>Which is equivalent to</p>
+<pre>
+UPDATE mysql.user SET Password=PASSWORD('<span style="color:#0d0">newpass</span>')
+  WHERE User='<span style="#0d0">user</span>' AND Host='%';
+FLUSH PRIVILEGES;
+</pre>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.0/en/set-password.html">http://dev.mysql.com/doc/refman/5.0/en/set-password.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 7 Oct 2007 15:23:00</pubDate>
+    </item>
+
+    <item>
+      <title>Change line endings</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Change_line_endings</guid>
+      <description>
+<![CDATA[
+<p>To quickly change CRLF (DOS/Win) line endings to LF (Unix) from shell:</p>
+<pre>
+perl -pi -e 's/\r/\t/g' <span style="color:#0d0">filename</span>
+</pre>
+<p><em>Note: this will replace the original file. Play careful!</em></p>
+<p>If I knew more about regular expressions then it would no doubt be pretty obvious, but alas.</p>
+]]>
+      </description>
+      <pubDate>Fri, 2 Oct 2007 11:09:00</pubDate>
+    </item>
+
+    <item>
+      <title>iPod Touch</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?iPod_Touch</guid>
+      <description>
+<![CDATA[
+<p>A work in progress..</p>
+<ol>
+  <li>You can't sync or access an iPod Touch over firewire, but it will recharge the battery. (Why?) USB only.</li>
+  <li>If the machine is "sleeping" it sucks power and will die within a few days. A lot less sleep time than older pods. <em>Update: It only did it that first time, it seems to last OK now.</em></li>
+  <li>Hold the top button (blank screen) in for a few seconds to really shut the machine down. You'll need to slide a control. Doing this will lose your place in a podcast.</li>
+  <li>You don't want to access video podcasts through Music. Trust me.</li>
+  <li>Press the home button twice quickly to get a simple menu for fast access to pause.</li>
+</ol>
+]]>
+      </description>
+      <pubDate>Thu, 1 Oct 2007 11:06:00</pubDate>
+    </item>
+
+    <item>
+      <title>Tarball</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Tarball</guid>
+      <description>
+<![CDATA[
+<p>Just quickly. To archive a directory</p>
+<pre>
+tar -cjf <span style="color:#0d0">output.tar.bz2 directory/</span>
+</pre>
+<p>To use gzip instead</p>
+<pre>
+tar -czf <span style="color:#0d0">output.tar.gz directory/</span>
+</pre>
+<p>To untar</p>
+<pre>
+tar xf <span style="color:#0d0">archive.tar.bz2</span>
+</pre>
+]]>
+      </description>
+      <pubDate>Mon, 4 Sep 2007 17:23:00</pubDate>
+    </item>
+
+    <item>
+      <title>Inner or outer join</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Inner_or_outer_join</guid>
+      <description>
+<![CDATA[
+<p>In MySQL there are three main joins: <code>inner</code>, <code>natural</code> (or left) and <code>right</code>.</p>
+<ol>
+  <li><code>inner join</code>
+<pre>
+select s.id, t.id as othertable_id, t.title
+from sometable s
+inner join othertable t on s.id=t.sometable_id
+</pre>
+  <p>Returns all results joined only at the given key (dropping the <code>on</code> clause would give a cartesian prodct).</p>
+  </li>
+  <li><code>natural/outer left join</code>
+<pre>
+select s.some_id, t.other_id, t.title
+from sometable s
+natural join othertable t using (some_id)
+</pre>
+  <p>Returns all results joined on the given key but will display unmatched counterparts in the second table.</p>
+  <li><p><code>right join</code> - counterpart to a natural/left join, but displaying unmatched rows from the first table. Kind of obscure, may not be implemented - avoid using.</p>
+  </li>
+</ol>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.1/en/join.html">http://dev.mysql.com/doc/refman/5.1/en/join.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 4 Sep 2007 14:54:00</pubDate>
+    </item>
+
+    <item>
+      <title>Command line calculator</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Command_line_calculator</guid>
+      <description>
+<![CDATA[
+<pre>
+echo <span style="color:#0d0">2/20</span> | bc -l
+</pre>
+<p>No, really.</p>
+]]>
+      </description>
+      <pubDate>Thu, 31 Aug 2007 16:12:00</pubDate>
+    </item>
+
+    <item>
+      <title>Case sensitive filenames</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Case_sensitive_filenames</guid>
+      <description>
+<![CDATA[
+<p>Filenames in Mac OS X are <strong>not</strong> case sensitive, ie. you cannot have both <code>some.txt</code> and <code>Some.txt</code>. You can access uppercase names with lowercase usage. Bad mac. This is due to the HFS+ filesystem, so obviously if you're using UFS or something else then it should be fine.</p>
+]]>
+      </description>
+      <pubDate>Thu, 31 Aug 2007 13:56:00</pubDate>
+    </item>
+
+    <item>
+      <title>Passwords don't work after DB import</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Passwords_don_t_work_after_DB_import</guid>
+      <description>
+<![CDATA[
+<p><em>Be careful with this one.</em></p>
+<p>MySQL versions prior to 4.1 use a 16-byte hash to store PASSWORD() encrypted fields, whereas the newer versions use a 41-byte hash. This might be why you can't log in any more...</p>
+<p>Export the passwords separately and re-encrypt at the other end.</p>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.1/en/password-hashing.html">http://dev.mysql.com/doc/refman/5.1/en/password-hashing.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 31 Aug 2007 13:49:00</pubDate>
+    </item>
+
+    <item>
+      <title>Send XML to a HTTPS</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Send_XML_to_a_HTTPS</guid>
+      <description>
+<![CDATA[
+<p>Essential for payment gateways:</p>
+<pre>
+#!/usr/bin/perl
+use IPC:Open2;
+
+my $post_url='https://www.payments.biz/gateway/reciever.script';
+open2(*README, *WRITEME,
+ "/usr/bin/curl -H 'Content-Type: text/xml' -d \@- $post_url");
+
+my $xml_out=&lt;&lt;EOX;
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;root&gt;
+  &lt;childElement&gt;
+  ...
+  &lt;/childElement&gt;
+&lt;/root&gt;
+EOX
+
+print WRITEME $xml_out;
+close WRITEME;
+
+my @response=&lt;README&gt;;
+close README;
+
+my $out=join('',@response);
+print $out;
+exit 0;
+</pre>
+<p><code>curl</code> is the key here - there are a few packages for Perl, but it might just be easier to execute with Open2 if the response is small and easy to interpret.</p>
+<ul>
+  <li><a href="http://www.dagblastit.com/https_post/perl_curl_https_post.html">http://www.dagblastit.com/https_post/perl_curl_https_post.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 25 Aug 2007 11:05:00</pubDate>
+    </item>
+
+    <item>
+      <title>Linux Filesystem Hierarchy</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Linux_Filesystem_Hierarchy</guid>
+      <description>
+<![CDATA[
+<table class="alt">
+<tr><th>Dir</th><th>Purpose</th></tr>
+<tr><td>/</td><td>Root of filesystem (Primary hierarchy root)</td></tr>
+<tr><td>/bin</td><td>Essential command binaries</td></tr>
+<tr><td>/boot</td><td>Boot loader files (kernels)</td></tr>
+<tr><td>/dev</td><td>Essential devices</td></tr>
+<tr><td>/etc</td><td>Host-specific, system wide config files</td></tr>
+<tr><td>/home</td><td>User home directories</td></tr>
+<tr><td>/lib</td><td>Essential libraries for binares in /bin and /sbin</td></tr>
+<tr><td>/media</td><td>Mount points for removable media drives</td></tr>
+<tr><td>/mnt</td><td>Temporary mounts</td></tr>
+<tr><td>/opt</td><td>Optional application software</td></tr>
+<tr><td>/proc</td><td>Virtual filesystem documenting kernel and process status</td><tr>
+<tr><td>/root</td><td>Home directory for root</td></tr>
+<tr><td>/sbin</td><td>Essential system binaries</td></tr>
+<tr><td>/srv</td><td>Site-specific data</td></tr>
+<tr><td>/tmp</td><td>Temporary space (also /var/tmp)</td></tr>
+<tr><td>/usr</td><td>Secondary hierarchy for user data</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/usr/bin</td><td>Non-essential command binaries</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/usr/include</td><td>Standard include files</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/usr/lib</td><td>Libraries for the binaries in /usr/bin and /usr/sbin</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/usr/sbin</td><td>Non-essential system binaries</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/usr/share</td><td>Architecture-independent data</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/usr/src</td><td>Source code</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/usr/X11R6</td><td>X Window System, Version 11 Release 6</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/usr/local</td><td>Tertiary hierarchy for local data</td></tr>
+<tr><td>/var</td><td>Variable files (ie. logs, spools, temp files)</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/var/lock</td><td>Lock files</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/var/log</td><td>System log files</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/var/mail</td><td>User mailboxes</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/var/run</td><td>Current running status since last boot</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/var/spool</td><td>Spool for queued processes</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/var/spool/mail</td><td>(deprecated)</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;/var/tmp</td><td>Temporary files to be preserved after reboot</td></tr>
+</table>
+
+<ul>
+  <li><a href="http://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/Linux-Filesystem-Hierarchy.html#The-Root-Directory">More info on the FHS</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 24 Aug 2007 16:29:00</pubDate>
+    </item>
+
+    <item>
+      <title>Bash scripting</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Bash_scripting</guid>
+      <description>
+<![CDATA[
+<p>This is definitely something worth looking into. For now, here's a Mac example to set a different <code>/etc/hosts</code> depending on your IP (good for local network/adsl workarounds).</p>
+<pre>
+#!/bin/bash
+
+EN1IP=`ifconfig en1 | grep 'inet ' | cut -d' ' -f 2`
+H_EN1IP=10.1.1.
+W_EN1IP=192.168.0.
+
+if echo "$EN1IP" | grep -q "$H_EN1IP"
+then
+    cp /etc/hosts.home /etc/hosts
+    echo `date` "Location: home - $EN1IP" >> /var/log/hosts.log
+else
+    cp /etc/hosts.work /etc/hosts
+    echo `date` "Location: work - $EN1IP" >> /var/log/hosts.log
+fi
+
+exit 0
+</pre>
+<p>Then you could set up a LaunchAgent in <code>/Library/LaunchAgents</code></p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+        "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+        &lt;key&gt;Label&lt;/key&gt;
+        &lt;string&gt;net.hostswapper&lt;/string&gt;
+        &lt;key&gt;ProgramArguments&lt;/key&gt;
+        &lt;array&gt;
+                &lt;string&gt;<span style="color:#0d0">/opt/loc</span>&lt;/string&gt;
+        &lt;/array&gt;
+	&lt;key&gt;RunAtLoad&lt;/key&gt;
+	&lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</pre>
+<p>Automatic host swapping!</p>
+<p style="color:#d00;font-style:italic">Update: actually, this wouldn't work since the LaunchDaemon is called before a wireless IP is acquired. Back to the drawing board. Pinging a known IP (ie. the router) with a set interval might work better.</p>
+<ul>
+  <li><a href="http://tldp.org/LDP/abs/html/">http://tldp.org/LDP/abs/html/</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 21 Aug 2007 14:54:00</pubDate>
+    </item>
+
+    <item>
+      <title>Increment counter in MySQL</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Increment_counter_in_MySQL</guid>
+      <description>
+<![CDATA[
+<p>Another specialist thing, but here we go:</p>
+<pre>
+mysql> select @m:=0;
++-------+
+| @m:=0 |
++-------+
+|     0 | 
++-------+
+1 row in set (0.00 sec)
+
+mysql> update image_descriptions set ordering=(@m:=@m+1)
+    -> where category='gallery';
+Query OK, 35 rows affected (0.00 sec)
+Rows matched: 35  Changed: 35  Warnings: 0
+</pre>
+<p>ie. set a variable to 0 then increment inside the SQL..</p>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.0/en/user-variables.html">http://dev.mysql.com/doc/refman/5.0/en/user-variables.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 21 Aug 2007 12:26:00</pubDate>
+    </item>
+
+    <item>
+      <title>Create a new SVN repository</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Create_a_new_SVN_repository</guid>
+      <description>
+<![CDATA[
+<p>Create the repo and a symbolic link</p>
+<pre>
+svnadmin create <span style="color:#0d0">/var/svn</span>
+ln <span style="color:#0d0">/var/svn</span> ~/svn -s
+</pre>
+<p>I'd probably follow the recommended layout, ie.</p>
+<pre>
+/trunk
+/branches
+/tags
+</pre>
+<p>So make a structure like that, then</p>
+<pre>
+svn import <span style="color:#0d0">myproject</span> file://<span style="color:#0d0">/var/svn/myproject</span> -m "Initial import"
+Adding         <span style="color:#0d0">myproject</span>/trunk
+Adding         <span style="color:#0d0">myproject</span>/branches
+Adding         <span style="color:#0d0">myproject</span>/tags
+
+Committed revision 1.
+</pre>
+
+<ul>
+  <li><a href="http://svnbook.red-bean.com/en/1.4/svn.reposadmin.create.html">http://svnbook.red-bean.com/en/1.4/svn.reposadmin.create.html</a></li>
+  <li><a href="http://svnbook.red-bean.com/en/1.4/svn.tour.importing.html">http://svnbook.red-bean.com/en/1.4/svn.tour.importing.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Sun, 20 Aug 2007 14:53:00</pubDate>
+    </item>
+
+    <item>
+      <title>undef</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?undef</guid>
+      <description>
+<![CDATA[
+<p>All scalars that have not been explicitly defined have the value of <code>undef</code>. You can also assign this value to a scalar. In this way, <code>undef</code> is pretty much like <code>NULL</code>...</p>
+<pre>
+my $a;
+my $b=undef;
+</pre>
+<p>The thing is, you can't explicitly check for <code>undef</code>, so no</p>
+<pre style="color:#d00">
+if ($b==undef) {...} # no
+</pre>
+<p>So, instead you need to</p>
+<pre style="color:#0d0">
+if (defined($b)) {...} # yes
+</pre>
+<p>I suppose that would be <code>is_not_null</code> or whatever. This is handy for setting and checking parameters to a function that aren't always needed.</p>
+<ul>
+  <li><a href="http://www.softpanorama.org/Scripting/Perlbook/Ch02/variables.shtml#Undef%20and%20scalar%20variables">More on Perl variables</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 17 Aug 2007 14:53:00</pubDate>
+    </item>
+
+    <item>
+      <title>Hashes pt. 2</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Hashes_pt__2_</guid>
+      <description>
+<![CDATA[
+<p>Let's take a hash</p>
+<pre>
+my %content = ( username => $ref->{username}, email => $ref->{email} );
+</pre>
+<p>Send a <em>reference</em> to the hash, along with other parameters, to some function</p>
+<pre>
+someFunc(\%content, $title);
+</pre>
+<p>Then unpack it at the other end</p>
+<pre>
+sub someFunc {
+  my ($contentRef, $title)=@_;
+  my %content = %$contentRef;
+  print $contentRef{username};
+}
+1;
+</pre>
+<ul>
+  <li><a href="http://www.unix.org.ua/orelly/perl/perlnut/ch04_08.htm">http://www.unix.org.ua/orelly/perl/perlnut/ch04_08.htm</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 19 Aug 2007 13:13:00</pubDate>
+    </item>
+
+    <item>
+      <title>Date calculations</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Date_calculations</guid>
+      <description>
+<![CDATA[
+<p>Date calculations can be performed directly in SQL:</p>
+<pre>
+select now() + interval 5 day;
+</pre>
+<p>Or the explicit</p>
+<pre>
+select date_add(now(), interval '14:10' hour_minute);
+</pre>
+<p><code>date_sub</code> for the reverse.</p>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_date-add">MySQL says</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 18 Aug 2007 15:20:00</pubDate>
+    </item>
+
+    <item>
+      <title>GNU Screen</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?GNU_Screen</guid>
+      <description>
+<![CDATA[
+<p>Before I forget</p>
+<pre>
+screen <span style="color:#0d0">command --parameters</span>
+</pre>
+<p>Then <strong>ctrl-a d</strong> to detach the screen. To list all screens</p>
+<pre>
+screen -list
+</pre>
+<p>And then to reattach</p>
+<pre>
+screen -r <span style="color:#0d0">screen id</span>
+</pre>
+<p>Leaving off the screen id will reattach the first screen it finds. Or if you want to scroll through a heap of em, <code>-r</code> then <strong>ctrl-a n</strong>ext (or <strong>ctrl-a space</strong>) and <strong>ctrl-a p</strong>revious.</p>
+<p>Also, <strong>ctrl-a c</strong>reate new screen and show attached <strong>ctrl-a w</strong>indows, or <strong>ctrl-a "</strong> to select one of 'em. I love screen.</p>
+<p>How about <strong>ctrl-a S</strong>plit window (that's a capital S), then <strong>ctrl-a tab</strong> between the window sections... <strong>ctrl-a X</strong> to remove the split (capital X)... Wow!</p>
+<p><strong>ctrl-a :</strong> to go into command mode, a la <code>vi</code>. <strong>ctrl-a :help</strong> is a good start. How about <strong>ctrl-a A</strong> to change the title of the current screen? I realy should stick all of this in a table at some point.</p>
+]]>
+      </description>
+      <pubDate>Wed, 18 Aug 2007 14:27:00</pubDate>
+    </item>
+
+    <item>
+      <title>Symbolic link to a directory</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Symbolic_link_to_a_directory</guid>
+      <description>
+<![CDATA[
+<p>Good for making a central hub of locations in your home directory. (ie. www, svn, etc.)</p>
+<pre>
+ln <span style="color:#0d0">/target/dir</span> <span style="color:#0d0">local</span> -s
+</pre>
+]]>
+      </description>
+      <pubDate>Wed, 18 Aug 2007 14:05:00</pubDate>
+    </item>
+
+    <item>
+      <title>Check core temp</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Check_core_temp</guid>
+      <description>
+<![CDATA[
+<p>See just how hot your macbook runs (brings new meaning to 'firing up Parallels'..)</p>
+<ul>
+  <li><a href="http://macbricol.free.fr/coreduotemp/">http://macbricol.free.fr/coreduotemp/</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 18 Aug 2007 12:17:00</pubDate>
+    </item>
+
+    <item>
+      <title>Postfix: purge deferred in queue</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Postfix__purge_deferred_in_queue</guid>
+      <description>
+<![CDATA[
+<p>Let's say you sent some email directly from a new server without setting up an smtp relay, postfix deferred the message, and is now trying to resend it every half hour or so.</p>
+<pre>
+postsuper -d ALL deferred
+</pre>
+<p>Fixed.</p>
+<ul>
+  <li><a href="http://mark.foster.cc/wiki/index.php/Postfix">http://mark.foster.cc/wiki/index.php/Postfix</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 18 Aug 2007 11:53:00</pubDate>
+    </item>
+
+    <item>
+      <title>Moving around in vi</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Moving_around_in_vi</guid>
+      <description>
+<![CDATA[
+<p>There are some things that I will never remember. Even though I use it pretty much every day, I still forget how to move around in <code>vi</code>. So here it is.</p>
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td>Ctrl-D</td><td>go down half a page</td></tr>
+<tr><td>Ctrl-U</td><td>go up half a apge</td></tr>
+<tr><td>Ctrl-F</td><td>go down a page</td></tr>
+<tr><td>Ctrl-B</td><td>go up a page</td></tr>
+<tr><td>w</td><td>start of the next word</td></tr>
+<tr><td>^</td><td>start of line</td></tr>
+<tr><td>$</td><td>end of line</td></tr>
+<tr><td>}</td><td>go forwards a paragraph</td></tr>
+<tr><td>{</td><td>go back a paragraph</td></tr>
+<tr><td>/keyword</td><td>search forwards</td></tr>
+</table>
+<ul>
+  <li><a href="http://www.tuxfiles.org/linuxhelp/vimcheat.html">More goodness</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 18 Aug 2007 10:39:00</pubDate>
+    </item>
+
+    <item>
+      <title>Switch between dirs</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Switch_between_dirs</guid>
+      <description>
+<![CDATA[
+<p>I don't think I'm using this properly, but you can (ab)use the directory stack to switch between two dirs super-quick..</p>
+<pre>
+<span style="color:#0d0">aip@devs-puter:~/www/some/big/dir/structure$</span> pushd .
+~/www/some/big/dir/structure ~/www/some/big/dir/structure
+<span style="color:#0d0">aip@devs-puter:~/www/some/big/dir/structure$</span> cd ~/www/another/dir
+<span style="color:#0d0">aip@devs-puter:~/www/another/dir$</span> pushd .
+~/www/another/dir ~/www/another/dir ~/www/some/big/dir/structure
+<span style="color:#0d0">aip@devs-puter:~/www/another/dir$</span> popd
+~/www/some/big/dir/structure ~/www/another/dir
+<span style="color:#0d0">aip@devs-puter:~/www/another/dir$</span> pushd
+<span style="color:#0d0">aip@devs-puter:~/www/some/big/dir/structure$</span> pushd
+<span style="color:#0d0">aip@devs-puter:~/www/another/dir$</span>
+</pre>
+<p>From there, you can just <code>pushd</code> between your current dir and an alternate.</p>
+]]>
+      </description>
+      <pubDate>Wed, 17 Aug 2007 10:24:00</pubDate>
+    </item>
+
+    <item>
+      <title>Sans serif sizing</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Sans_serif_sizing</guid>
+      <description>
+<![CDATA[
+<p>When using sans-serif type for web, use the web-specific fonts at smaller sizes, ie.</p>
+<ul>
+  <li>Tahoma  &lt; 11px</li>
+  <li>Arial &gt;= 11px</li>
+</ul>
+<p>No particular reason, it just looks good.</p>
+]]>
+      </description>
+      <pubDate>Tue, 17 Aug 2007 16:46:00</pubDate>
+    </item>
+
+    <item>
+      <title>Add a new user account (Dapper)</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Add_a_new_user_account__Dapper_</guid>
+      <description>
+<![CDATA[
+<p>To add a new limited access user (perfect for an IMAP account)</p>
+<pre>
+sudo useradd -m -s /bin/bash <span style="color:#0d0">username</span>
+sudo passwd <span style="color:#0d0">username</span>
+sudo mkdir /home/<span style="color:#0d0">username</span>/Maildir /home/<span style="color:#0d0">username</span>/Maildir/cur
+ /home/<span style="color:#0d0">username</span>/Maildir/new /home/<span style="color:#0d0">username</span>/Maildir/tmp
+sudo chown -R <span style="color:#0d0">username</span> /home/<span style="color:#0d0">username</span>/*
+</pre>
+]]>
+      </description>
+      <pubDate>Tue, 17 Aug 2007 11:38:00</pubDate>
+    </item>
+
+    <item>
+      <title>Set up Email on Ubuntu (Dapper)</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Set_up_Email_on_Ubuntu__Dapper_</guid>
+      <description>
+<![CDATA[
+<p>This is a little complicated. I wanted a single, central IMAP server to check email on, kind of like GMail, only accessible through any standard email app (Mail.app in my case). I seem to be switching email servers and rebuilding machines on a regular basis, so I wanted this setup to provide a safe store for all my email. GMail was a good solution, but doesn't provide the full swag that an email app has. Also, I don't trust the big G as much as I once did.</p>
+<ul>
+  <li><p>First things first, postfix:</p><ol>
+    <li>
+<pre>
+apt-get install postfix libsasl2 sasl2-bin libsasl2-modules
+</pre>
+  <p>Select <em>Internet site</em>, then enter the correct FQDN.</p></li>
+    <li><p>Add some config</p>
+<pre>
+sudo postconf -e "home_mailbox = Maildir/"
+sudo postconf -e "mailbox_command = "
+</pre>
+    </li><li><p>Then SASL config</p>
+<pre>
+postconf -e 'smtpd_sasl_local_domain ='
+postconf -e 'smtpd_sasl_auth_enable = yes'
+postconf -e 'smtpd_sasl_security_options = noanonymous'
+postconf -e 'broken_sasl_auth_clients = yes'
+postconf -e 'smtpd_recipient_restrictions = permit_sasl_authenticated,
+ permit_mynetworks,reject_unauth_destination'
+postconf -e 'inet_interfaces = all'
+echo 'pwcheck_method: saslauthd' >> /etc/postfix/sasl/smtpd.conf
+echo 'mech_list: plain login' >> /etc/postfix/sasl/smtpd.conf
+</pre>
+    </li><li><p>Set up the certificate</p>
+<pre>
+mkdir /etc/postfix/ssl
+cd /etc/postfix/ssl/
+openssl genrsa -des3 -rand /etc/hosts -out smtpd.key 1024
+chmod 600 smtpd.key
+openssl req -new -key smtpd.key -out smtpd.csr
+openssl x509 -req -days 3650 -in smtpd.csr -signkey smtpd.key
+ -out smtpd.crt
+openssl rsa -in smtpd.key -out smtpd.key.unencrypted
+mv -f smtpd.key.unencrypted smtpd.key
+openssl req -new -x509 -extensions v3_ca -keyout cakey.pem
+ -out cacert.pem -days 3650
+</pre>
+    </li><li><p>Then back to postfix</p>
+<pre>
+postconf -e 'smtpd_tls_auth_only = no'
+postconf -e 'smtp_use_tls = yes'
+postconf -e 'smtpd_use_tls = yes'
+postconf -e 'smtp_tls_note_starttls_offer = yes'
+postconf -e 'smtpd_tls_key_file = /etc/postfix/ssl/smtpd.key'
+postconf -e 'smtpd_tls_cert_file = /etc/postfix/ssl/smtpd.crt'
+postconf -e 'smtpd_tls_CAfile = /etc/postfix/ssl/cacert.pem'
+postconf -e 'smtpd_tls_loglevel = 1'
+postconf -e 'smtpd_tls_received_header = yes'
+postconf -e 'smtpd_tls_session_cache_timeout = 3600s'
+postconf -e 'tls_random_source = dev:/dev/urandom'
+postconf -e 'myhostname = <span style="color:#0d0">server1.example.com</span>'
+/etc/init.d/postfix restart
+</pre>
+    </li><li><p>Start the SASL runtime config</p>
+<pre>
+mkdir -p /var/spool/postfix/var/run/saslauthd
+</pre>
+    <p>Edit <code>/etc/default/saslauthd</code>, uncomment START and add</p> 
+<pre>
+START=yes
+PARAMS="-m /var/spool/postfix/var/run/saslauthd -r"
+</pre>
+    <p>Change the <code>PIDFILE</code> value for <code/etc/init.d/saslauthd</code></p>
+<pre>
+PIDFILE="/var/spool/postfix/var/run/${NAME}/saslauthd.pid"
+</pre>
+    <p>Fire it up</p>
+<pre>
+/etc/init.d/saslauthd start
+</pre>
+    <p><code>telnet localhost 25</code> then <code>ehlo localhost</code> to see if it works. Look out for <code>250-STARTTLS</code> and <code>250-AUTH</code>.</p>
+    </li></ol>
+  </li>
+  <li><p>Courier IMAP (forget SSL for now.. but it's a good idea, so definitely come back to it)</p>
+<pre>
+apt-get install courier-imap
+</pre>
+  <p>Say <em>no</em> to web admin. Add some <code>postfix</code> config</p>
+<pre>
+postconf -e 'home_mailbox = Maildir/'
+postconf -e 'mailbox_command ='
+</pre>
+  <p>And</p>
+<pre>
+/etc/init.d/postfix restart
+</pre>
+</li>
+  <li><p>Install Mutt for shell email viewing</p>
+<pre>
+apt-get install mutt
+</pre>
+  <p>Set up the <code>Maildir</code> structure under the user home directory</p>
+<pre>
+mkdir ~/Maildir ~/Maildir/cur ~/Maildir/new ~/Maildir/tmp
+</pre>
+  <ul>
+    <li><a href="http://dev.waitingallday.com/yoyo/Archive/Title/?Config_Mutt_to_read_from_IMAP">Config Mutt to read from IMAP</a></li>
+    <li><a href="http://dev.waitingallday.com/yoyo/Archive/Title/?IMAP_folders_on_Mutt">IMAP folders on Mutt</a></li>
+  </ul>
+  </li>
+  <li><p>Finally, fetchmail</p>
+<pre>
+apt-get install fetchmail
+</pre>
+  <p>Edit/add some settings in <code>/etc/fetchmailrc</code></p>
+<pre>
+set daemon 300        <span style="color:#999"># Poll every 5 minutes</span>
+set syslog            <span style="color:#999"># log through syslog facility</span>
+set postmaster root
+set no bouncemail
+
+defaults:
+timeout 300
+antispam -1
+batchlimit 100
+
+poll <span style="color:#0d0">pop.mailserver.net</span> protocol POP3 user "<span style="color:#0d0">username</span>" there with
+ password "<span style="color:#0d0">password</span>" is <span style="color:#0d0">localuser</span> here
+</pre> 
+  <p>Those poll directives are pretty straight forward. Edit <code>/etc/default/fetchmail</code> to get set up</p>
+<pre>
+START_DAEMON=yes
+</pre>
+  <p>Then <code>/etc/init.d/fetchmail start</code>. You can <code>/etc/init.d/fetchmail awaken</code> for a manual fetch if the daemon isn't polling fast enough.</p>
+  <p>The last step is getting fetchmail to access GMail (SSL certs required).</p>
+<pre>
+openssl s_client -connect smtp.gmail.com:995 -showcerts
+</pre>
+    <p>Copy everything from <code>-----BEGIN CERTIFICATE-----</code> to <code>-----END CERTIFICATE-----</code> (including those labels) and save as <code>/etc/ssl/certs/gmail.pem</code>. You'll also need a cert from the issuer, Equifax Secure Certificate Authority, but Ubuntu already has one of those. Next, some ssl black magic:</p>
+<pre>
+cd /etc/ssl/certs
+c_rehash .
+</pre>
+    <p>See if it works (look out for an <code>+OK Gpop ... ready</code> code)</p>
+<pre>
+openssl s_client -connect pop.gmail.com:995
+</pre>
+    <p>If all is OK, add your GMail user to <code>/etc/fetchmailrc</code></p>
+<pre>
+poll pop.gmail.com with proto POP3 and options no dns user
+ "<span style="color:#0d0">user</span>@gmail.com" with password "<span style="color:#0d0">password</span>" is <span style="color:#0d0">localuser</span> here
+ options ssl sslcertck sslcertpath "/etc/ssl/certs" keep
+</pre>
+    <p>Fetchmail is run as root, so you can lock <code>/etc/fetchmailrc</code> down to 0600. It's Reasonably Secure, but take all due precautions.</p>
+  </li>
+</ol>
+<ul>
+  <li><a href="https://help.ubuntu.com/community/PostfixBasicSetupHowto">The basics, from Ubuntu</a></li>
+  <li><a href="http://www.howtoforge.com/perfect_setup_ubuntu_6.06_p5">http://www.howtoforge.com/perfect_setup_ubuntu_6.06_p5</a></li>
+  <li><a href="http://axljab.homelinux.org/Gmail_POP3_with_Fetchmail">http://axljab.homelinux.org/Gmail_POP3_with_Fetchmail</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 17 Aug 2007 11:57:00</pubDate>
+    </item>
+
+    <item>
+      <title>Dapper setup</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Dapper_setup</guid>
+      <description>
+<![CDATA[
+<p>These instructions are for Ubuntu 6.06 LTS (a.k.a. Dapper Drake). After a clean CD install:
+<ol>
+  <li><p>Add the all-important ssh server, samba for easy file sharing &amp; subversion for dev work:</p>
+<pre>
+apt-get install ssh subversion samba
+</pre>
+  </li>
+  <li><p>Open <code>/etc/samba/smb.conf</code> and uncomment the line</p>
+<pre>
+ security = user
+</pre>
+  <p>Next, give yourself access with <code>smbpasswd</code> or assign it to someone else with <code>sudo smbpasswd -a <span style="color:#0d0">user</span></code>. Finally, add in some shares such as</p>
+<pre>
+[fileserv]
+comment = Fileserver root
+browseable = yes
+path = /var/server
+writable = yes
+public = no
+guest ok = no
+</pre>
+  <p>Restart the server with <code>sudo /etc/init.d/samba restart</code> and you're done.</p></li>
+  <li><a href="http://dev.waitingallday.com/yoyo/Archive/Title/?Set_up_Apache2__Dapper_">Install Apache</a></li>
+  <li><a href="http://dev.waitingallday.com/yoyo/Archive/Title/?Set_up_Perl_for_Apache2__Dapper_">Set up Perl for Apache</a></li>
+  <li><a href="http://dev.waitingallday.com/yoyo/Archive/Title/?Set_up_MySQL_on_Ubuntu__Dapper_">Install MySQL</a></li>
+  <li><a href="http://dev.waitingallday.com/yoyo/Archive/Title/?Set_up_Email_on_Ubuntu__Dapper_">Set up Email</a></li>
+  <li><a href="http://dev.waitingallday.com/yoyo/Archive/Title/?Create_a_new_SVN_repository">Create a new SVN repository</a></li>
+</ol>
+]]>
+      </description>
+      <pubDate>Mon, 16 Aug 2007 10:55:00</pubDate>
+    </item>
+
+    <item>
+      <title>Set up Apache2 (Dapper)</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Set_up_Apache2__Dapper_</guid>
+      <description>
+<![CDATA[
+<p>From a clean install</p>
+<ol>
+  <li>
+<pre>
+apt-get install apache2
+</pre>
+  </li>
+  <li>Enable PHP5 and Python support
+<pre>
+apt-get install php5 php5-gd libapache2-mod-python php5-mysql
+</pre>
+  </li>
+</ol>
+<p>Apache configuration is now split accross a few locations, rather than a central file. I would copy the <code>default</code> site .conf in <code>/etc/apache2/sites-available</code> to the FQDN of the site (as a filename), then change config and delete the original default. Before you do that, enable the new one with <code>a2ensite <span style="color:#0d0">site</span></code> and disable default with <code>a2dissite <span style="color:#0d0">default</span></code>.</p>
+<p>Similarly, enable and disable modules with <code>a2enmod</code>/<code>a2dismod</code>.</p>
+<p>More details on apache .conf files later. That'll be a big one.</p>
+]]>
+      </description>
+      <pubDate>Mon, 16 Aug 2007 12:37:00</pubDate>
+    </item>
+
+    <item>
+      <title>Set up Perl for Apache2 (Dapper)</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Set_up_Perl_for_Apache2</guid>
+      <description>
+<![CDATA[
+<p>ImageMagick is a universe package in Dapper, so from a fresh install enable the extra repositories in <code>/etc/apt/sources.list</code>. Next, install:</p>
+<pre>
+apt-get install libhtml-template-perl libgd-gd2-perl
+ libmail-sendmail-perl libdate-manip-perl libmagick9
+ imagemagick perlmagick libxml-csv-perl
+</pre>
+<p>That should be a pretty good coverage for now. You can always <code>apt-cache search <span style="color:#0d0">perl package keywords</span></code> for other packages and install as necessary.</p>
+<p>Next, edit <code>/etc/apache2/apache.conf</code> or a site .conf and add in</p>
+<pre>
+AddHandler cgi-script .cgi .pl
+
+&lt;Files ~ "\.pl$"&gt;
+Options +ExecCGI
+&lt;/Files&gt;
+</pre>
+<p>Works for me.</p>
+]]>
+      </description>
+      <pubDate>Mon, 16 Aug 2007 12:14:00</pubDate>
+    </item>
+
+    <item>
+      <title>Set up MySQL on Ubuntu (Dapper)</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Set_up_MySQL_on_Ubuntu__Dapper_</guid>
+      <description>
+<![CDATA[
+<ol>
+  <li>
+<pre>
+apt-get install mysql-server
+</pre>
+  </li>
+  <li>Change the <code>root</code> password:
+<pre>
+mysqladmin -uroot password <span style="color:#0d0">new-password</span>
+</pre>
+  </li>
+  <li>Enable logging by uncommenting <code>log</code> in <code>/etc/mysql/my.cnf</code>. Then <code>/etc/init.d/mysql restart</code> the server to prime it up.
+  </li>
+  <li><p>If importing databases from an old system (even the same version), you'll get this error:</p>
+<pre>
+error: 'Access denied for user 'debian-sys-maint'@'localhost'
+</pre>
+  <p>For a quick n' dirty fix, take out the two password attributes in <code>/etc/msql/debian.cnf</code> and then</p>
+<pre>
+GRANT RELOAD, SHUTDOWN, PROCESS, SHOW DATABASES, SUPER,
+ LOCK TABLES ON *.* TO 'debian-sys-maint'@'localhost'
+ IDENTIFIED BY PASSWORD '';
+flush privileges;
+</pre>
+  <ul><li><a href="http://ubuntuforums.org/showthread.php?t=112505">http://ubuntuforums.org/showthread.php?t=112505</a></li></ul>
+  </li>
+</ol>
+]]>
+      </description>
+      <pubDate>Mon, 16 Aug 2007 12:02:00</pubDate>
+    </item>
+
+    <item>
+      <title>Add to @INC</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Add_to__INC</guid>
+      <description>
+<![CDATA[
+<p>You might need to add a path to @INC for Perl on some hosts:</p>
+<pre>
+BEGIN{push @INC, "/home/<span style="color:#0d0">user</span>/perl/usr/lib/perl5/site_perl/5.8.7";}
+</pre>
+]]>
+      </description>
+      <pubDate>Mon, 16 Aug 2007 11:46:00</pubDate>
+    </item>
+
+    <item>
+      <title>What version of flash am I using?</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?What_version_of_flash_am_I_using_</guid>
+      <description>
+<![CDATA[
+<ul>
+  <li><a href="http://www.adobe.com/products/flash/about/">http://www.adobe.com/products/flash/about/</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 13 Aug 2007 23:53:00</pubDate>
+    </item>
+
+    <item>
+      <title>MySQL select into</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?MySQL_select_into</guid>
+      <description>
+<![CDATA[
+<p>The syntax for MySQL's SELECT INTO is in reverse:</p>
+<pre>
+INSERT INTO table (field) SELECT s.key FROM other_table s;
+</pre>
+<p>Good for making up temp tables.</p>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.1/en/ansi-diff-select-into-table.html">http://dev.mysql.com/doc/refman/5.1/en/ansi-diff-select-into-table.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 9 Aug 2007 14:02:00</pubDate>
+    </item>
+
+    <item>
+      <title>Select..where..in</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Select__where__in</guid>
+      <description>
+<![CDATA[
+<p>For a long list of PK/SK checks</p>
+<pre>
+SELECT *
+FROM table t
+WHERE t.id IN (select s.id from other_table s)
+ORDER BY t.id;
+</pre>
+]]>
+      </description>
+      <pubDate>Mon, 9 Aug 2007 13:59:00</pubDate>
+    </item>
+
+    <item>
+      <title>Shorthand if</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Shorthand_if</guid>
+      <description>
+<![CDATA[
+<p>Should work on any C-style language (Perl below):</p>
+<pre>
+my $referred = ($referral eq 'something') ? 1: 0;
+</pre>
+<p>That would be:</p>
+<pre>
+my $referred = {};
+if <span style="color:#0d0">($referral eq 'something')</span> {
+  $referred = <span style="color:#0d0">1</span>;
+} else {
+  $referred = <span style="color:#0d0">0</span>;
+}
+</pre>
+<p>Or how about</p>
+<pre>
+($referred) ?
+  <span style="color:#999"># do something here</span>
+:
+  <span style="color:#999"># do something else</span>
+;
+</pre>
+<p>But that's kind of lazy.</p>
+]]>
+      </description>
+      <pubDate>Mon, 9 Aug 2007 11:23:00</pubDate>
+    </item>
+
+    <item>
+      <title>sprintf</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?sprintf</guid>
+      <description>
+<![CDATA[
+<p><code>sprintf</code>, the C-style string formatting function can be used in stacks of different ways for Perl and PHP. The two that I want to remember today both use <code>%f</code>, but for different reasons:</p>
+<ol>
+  <li><p>Format a 16-digit number from a scalar (this one needs to be a float since integers are too small to contain 16 digits)</p>
+<pre>
+sprintf("%16.0f", $credit_card);
+</pre>
+  <p>So that would make something like <code>1234567812345678</code> from a scalar - by default, Perl seems to want to use scientific notation for such a big number.</p></li>
+  <li><p>Format a currency (this one needs float to show the mantissa)</p>
+<pre>
+sprintf("\$%.2f", $amt); <span style="color:#999"># escape out the $</span>
+</pre>
+  <p>ie. <code>$320.87</code></p></li>
+</ol>
+<p><code>%</code> indicates a variable to substitute from the 2nd parameter, and in the above examples <em>&lt;integral digits&gt;</em><code>.</code><em>&lt;mantissa digits&gt;</em>, followed by <code>f</code> for floating-point.</p>
+<ul>
+  <li><a href="http://www.perl.com/doc/manual/html/pod/perlfunc/sprintf.html">More sprintf goodness</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 5 Aug 2007 22:13:00</pubDate>
+    </item>
+
+    <item>
+      <title>Three MySQL treats</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Three_MySQL_things</guid>
+      <description>
+<![CDATA[
+<ol>
+  <li><p>Get the auto int that was just inserted:</p>
+<pre>
+select <span style="color:#0d0">last_insert_id()</span>;
+</pre>
+  </li>
+  <li><p>Get a random list:</p>
+<pre>
+select * from some_table <span style="color:#0d0">order by rand()</span>;
+</pre>
+  </li>
+  <li><p>Get one row from a table:</p>
+<pre>
+select * from some_table <span style="color:#0d0">limit 1</span>;
+</pre>
+  </li>
+</ol>
+<p>Now put them together. Or, maybe just the last two.</p>
+]]>
+      </description>
+      <pubDate>Thu, 5 Aug 2007 12:33:00</pubDate>
+    </item>
+
+    <item>
+      <title>Insert a date into MySQL</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Insert_a_date_into_MySQL</guid>
+      <description>
+<![CDATA[
+<p>The counterpart for <code>date_format</code>, this one takes a text date and formats to MySQL datetime:</p>
+<pre>
+str_to_date($form_input, '%d/%m/%Y')
+</pre>
+<p>ie. <code>$form_input</code> is in dd/mm/yyyy format.</p>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/4.1/en/date-and-time-functions.html#function_str-to-date">Manual page (12.6) + some other nifty date functions</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Wed, 4 Aug 2007 23:17:00</pubDate>
+    </item>
+
+    <item>
+      <title>Make a clean SVN copy for prod</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Make_a_clean_SVN_copy_for_prod</guid>
+      <description>
+<![CDATA[
+<p>If you're looking for a clean, production copy of a project in SVN, then use <code>export</code> instead of <code>checkout</code>. Note that when you <code>export</code>, you can't go updating the code from SVN any more - it's just a clean copy of all the files in the repository without any svn meta.
+]]>
+      </description>
+      <pubDate>Wed, 4 Aug 2007 12:02:00</pubDate>
+    </item>
+
+    <item>
+      <title>Find the hosts file</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Find_the_hosts_file</guid>
+      <description>
+<![CDATA[
+<p>Until I figure out a neater way to fool the router, the hosts file can be found on Mac and linux under</p>
+<pre>
+/etc/hosts
+</pre>
+<p>And Windows hides it at</p>
+<pre>
+C:\WINDOWS\system32\drivers\etc\hosts
+</pre>
+]]>
+      </description>
+      <pubDate>Wed, 4 Aug 2007 00:04:00</pubDate>
+    </item>
+
+    <item>
+      <title>Remap the other enter key on Macbook</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Remap_the_other_enter_key_on_Macbook</guid>
+      <description>
+<![CDATA[
+<p>Apple, I understand that ENTER and RETURN are different, but it seems a little extravagant to give priority to ENTER over, say, FORWARD DELETE (or just DELETE for the 101 enhanced keyboard crowd). Even more cryptic, the way of accessing forward delete (fn + Delete) is made with two keys that are so far apart that no human can do it with a single hand. Shame on you, Apple.</p>
+<p>What I want is to remap my superfluous enter key to a really-really-useful..fluous forward delete key. There's a technote that explains how to remap keys <em>the hard way</em>, but today I've elected to run with a small app called DoubleCommand. I installed it, and it worked. What more can you ask for?</p>
+<ul>
+  <li><a href="http://doublecommand.sourceforge.net">http://doublecommand.sourceforge.net</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Tue, 3 Aug 2007 23:16:00</pubDate>
+    </item>
+
+    <item>
+      <title>Content-type to trigger download</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Content-type_to_trigger_download</guid>
+      <description>
+<![CDATA[
+<p>Handy trick for generating CSVs - set the content-type header to <code>application/octet-stream</code> with meta tags or in PHP</p>
+<pre>
+&lt;?php
+  header('Content-Type: application/octet-stream');
+?&gt;
+</pre>
+<p>Most browsers will download this file instead of rendering.</p>
+]]>
+      </description>
+      <pubDate>Tue, 3 Aug 2007 11:46:00</pubDate>
+    </item>
+
+    <item>
+      <title>IMAP folders on Mutt</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?IMAP_folders_on_Mutt</guid>
+      <description>
+<![CDATA[
+<p>If you're only checking your inbox with mutt, then that's all well and good. But if you need to find something in that 17-deep folder structure, then you'll need to set the base folder for mutt to look at:</p>
+<pre>
+set folder="imap<em>(s)</em>://<em>user</em>:<em>password</em>@localhost/INBOX"
+</pre>
+<p>Press <code>c</code> in mutt to change the current folder.</p>
+]]>
+      </description>
+      <pubDate>Mon, 2 Aug 2007 14:58:00</pubDate>
+    </item>
+
+    <item>
+      <title>Perl substring, lowercase, uppercase</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Perl_substring__lowercase__uppercase</guid>
+      <description>
+<![CDATA[
+<p>Looks a bit like this</p>
+<pre>
+my $except_first_three_chars = substr($full_string,3);
+</pre>
+<p>ie. <code>(expression, offset [, length])</code></p>
+<p>Or maybe you want a file extension?</p>
+<pre>
+my $ext = lc(substr $filename, -3, 3);
+</pre>
+<p>Some other string gear:</p>
+<table>
+<tr><th>func</th><th>action</th></tr>
+<tr><td><code>lc(expr)</code></td><td>lowercase</td></tr>
+<tr><td><code>uc(expr)</code></td><td>UPPERCASE</td></tr>
+<tr><td><code>ucfirst(expr)</code></td><td>Capitalise</td></tr>
+</table>
+<ul>
+  <li><a href="http://perldoc.perl.org/functions/substr.html">http://perldoc.perl.org/functions/substr.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 2 Aug 2007 12:13:00</pubDate>
+    </item>
+
+    <item>
+      <title>CSS Shorthand</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?CSS_Shorthand</guid>
+      <description>
+<![CDATA[
+<p>Just a quickie. Three CSS property notations on any four-value directive:</p>
+<ol>
+  <li>One value, covers all four directions <code>margin:10px;</code></li>
+  <li>Two values, top/bottom and left/right <code>margin:10px 0;</code></li>
+  <li>Four values, <strong>top-right-bottom-left</strong> <code>margin:20px 0 10px 10px;</code></li>
+</ol>
+<p>(<code>0</code> doesn't need units, it's just, you know.. <code>0</code>)</p>
+]]>
+      </description>
+      <pubDate>Mon, 2 Aug 2007 11:54:00</pubDate>
+    </item>
+
+    <item>
+      <title>Ignore files in an SVN working copy</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Ignore_files_in_an_SVN_working_copy</guid>
+      <description>
+<![CDATA[
+<p>Try this in the directory of the file you want to ignore:</p>
+<pre>
+svn propedit svn:ignore .
+</pre>
+<p>This will shoot you off to whatever editor you've got set, where you can list the files (or patterns, ie. <code>*.xml</code>) to ignore from svn control.</p>
+<ul>
+  <li><a href="http://svnbook.red-bean.com/en/1.1/ch07s02.html">http://svnbook.red-bean.com/en/1.1/ch07s02.html (kind of confusing)</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 30 Jul 2007 17:34:00</pubDate>
+    </item>
+
+    <item>
+      <title>Mount a network share with CIFS</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Mount_a_network_share_with_CIFS</guid>
+      <description>
+<![CDATA[
+<p>For a one-off:</p>
+<pre>
+mount -t cifs //host_or_ip/share /mountpoint
+</pre>
+<p>And you'll probably need at least some of:</p>
+<pre>
+-o username=smbusername, password=smbpassword, iocharset=utf8,
+ file_mode=0777, dir_mode=0777
+</pre>
+<p>If you want it automatic, add a line to <code>/etc/fstab</code>:</p>
+<pre>
+//netbiosname/share /mountpoint cifs
+ username=smbusername,password=smbpassword,
+ iocharset=utf8,file_mode=0777,dir_mode=0777 0 0
+</pre>
+<p>(you could store the user/pass in a file and point <code>credentials</code> at it for better security)</p>
+<p>Now try it out with <code>sudo mount -a</code>.</p>
+<ul>
+  <li><a href="http://ubuntuforums.org/showthread.php?t=288534">http://ubuntuforums.org/showthread.php?t=288534</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 30 Jul 2007 16:51:00</pubDate>
+    </item>
+
+    <item>
+      <title>Pageinate a query</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Pageinate_a_query</guid>
+      <description>
+<![CDATA[
+<p>The SQL part of pageination is easy with MySQL:</p>
+<pre>
+select * from sometable where clause=expr
+ order by index_field <span style="color:#9d9">limit 20, 10</span>
+</pre>
+<p>ie. display 10 records, beginning at index 20 of the resultset. Now just feed the starting point with a paging script, and you're done.</p>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/4.1/en/select.html">http://dev.mysql.com/doc/refman/4.1/en/select.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 30 Jul 2007 16:09:00</pubDate>
+    </item>
+
+    <item>
+      <title>SVN: Create a new working copy</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?SVN__Create_a_new_working_copy</guid>
+      <description>
+<![CDATA[
+<p>Do this:</p>
+<pre>
+svn checkout http://svnhost/svn/<span style="color:#9d9">trunk</span> .
+</pre>
+<p>(<code>svnhost</code> being the host of the repository, <code>trunk</code> the path to the project you want)</p>
+<p>Or if it's local:</p>
+<pre>
+svn co file://<span style="color:#9d9">/svn</span>/trunk .
+</pre>
+<p>(<code>/svn</code> points to wherever your repository is locally)</p>
+<p>...</p>
+<p>Okay, that was hardly worth it. More fancy SVN trickery to follow.</p>
+<ul>
+  <li><a href="http://svnbook.red-bean.com/en/1.0/re04.html">http://svnbook.red-bean.com/en/1.0/re04.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 30 Jul 2007 12:24:00</pubDate>
+    </item>
+
+    <item>
+      <title>Function arguments in Perl</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Function_arguments_in_Perl</guid>
+      <description>
+<![CDATA[
+<p>a.k.a. URGHHH...</p>
+<p>The three ways you want to remember are:<p>
+<ol>
+  <li><p>If you don't know exactly what's coming, roll it all in a hash:</p>
+<pre>
+sub perlFunc {
+  my %args = @_;
+  print $args{what_was_that_again};
+
+  return(%args);
+}
+</pre>
+  </li>
+  <li><p>Or, if you <em>do</em> know what's coming:</p>
+<pre>
+sub otherPerlFunc {
+  my ($what_was_that_again, $oh_yeah, $never_mind) = @_;
+}
+</pre>
+  </li>
+  <li><p>And finally, if it's a single parameter you might as well just:</p>
+<pre>
+sub oneMorePerlFunc {
+  my $singleValue = shift;
+}
+</pre>
+  </li>
+</ol>
+]]>
+      </description>
+      <pubDate>Fri, 30 Jul 2007 00:24:00</pubDate>
+    </item>
+
+
+    <item>
+      <title>Hashes in Perl (part 1)</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Hashes_in_Perl__part_1_</guid>
+      <description>
+<![CDATA[
+<p>Define a hash (associative array):</p>
+<pre>
+my %hash = ("key" => "value", currentlyPlaying => "Trans Am",
+  "is_$someScalar" => 1);
+</pre>
+<p>Determine the number of elements in a hash (works on arrays too), similar to a .length() or UBound - use the <code>scalar</code> function:</p>
+<pre>
+my $hashLength = scalar %hash;
+my $arrLength = scalar(@array); <span style="color:#aaa"># this would work too</span>
+</pre>
+<p>To quickly print out the contents of a hash, use <code>keys</code>:</p>
+<pre>
+print "Content-type:text/html\n\n";
+foreach $k (keys %vars) { print "$k => ".$vars{$k}; }
+</pre>
+
+<p>That's it for now.</p>
+]]>
+      </description>
+      <pubDate>Thu, 29 Jul 2007 23:13:00</pubDate>
+    </item>
+
+    <item>
+      <title>Here document</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Here_document</guid>
+      <description>
+<![CDATA[
+<p>PHP and Perl can both use <em>here document</em> for multi-line text, but the call and terminator are slightly different for each:</p>
+<ol>
+  <li>PHP
+<pre>
+print&lt;&lt;&lt;ENDLABEL
+  This is a PHP print here, complete with $variable
+  interpolation. The terminator label must be on a line
+  by itself at column 1.
+ENDLABEL;
+</pre>
+  </li>
+  <li>Perl
+<pre>
+my $text = &lt;&lt;END;
+  This is how Perl does it. "Quotes" are fine.
+END
+</pre>
+  </li>
+</ol>
+<p>(the terminator labels don't make a difference.. call it whatever you like)</p>
+]]>
+      </description>
+      <pubDate>Tue, 27 Jul 2007 16:45:00</pubDate>
+    </item>
+
+    <item>
+      <title>Light weight Redirect</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Light_weight_Redirect</guid>
+      <description>
+<![CDATA[
+<p>No server side code needed, just use a HTML <code>meta</code> tag to set a HTTP header and off you go:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+  &lt;title&gt;Redirect..&lt;/title&gt;
+  &lt;meta http-equiv="refresh"
+    content="0;url=http://www.waitingallday.com"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>(the first parameter of the <code>refresh</code> call is a delay in seconds before execution - set it to 0 for instant redirect)</p>
+<ul>
+  <li><a href="http://vancouver-webpages.com/META/metatags.detail.html">Some other neat meta gear</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 26 Jul 2007 15:30:00</pubDate>
+    </item>
+
+    <item>
+      <title>Format a date with MySQL</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Format_a_date_with_MySQL</guid>
+      <description>
+<![CDATA[
+<p>Two date format examples:</p>
+<pre>
+select date_format(curdate(),'%d-%m-%Y');
+</pre>
+<p>30-07-2007</p>
+<pre>
+select date_format(now(),'%a, %d %b %Y %T');</pre>
+<p>Mon, 30 Jul 2007 13:45:21</p>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_date-format">MySQL date specifiers</a></li> 
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 26 Jul 2007 14:00:00</pubDate>
+    </item>
+
+    <item>
+      <title>Comment something out in MySQL</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Comment_something_out_in_MySQL</guid>
+      <description>
+<![CDATA[
+<p>Handy for a DB upgrade without rewriting the whole thing. MySQL supports:</p>
+<pre>
+<span style="color:#aaa">#single line, no white space</span>
+<span style="color:#aaa">-- single line, don't forget the space after the dashes</span>
+select <span style="color:#aaa">/* inline comment */</span> * from info;
+</pre>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.0/en/comments.html">http://dev.mysql.com/doc/refman/5.0/en/comments.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Mon, 26 Jul 2007 13:57:00</pubDate>
+    </item>
+
+    <item>
+      <title>Set up synergy using launchd</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Set_up_synergy_using_launchd</guid>
+      <description>
+<![CDATA[
+<p>Okay, this is a long one.</p>
+<p>Synergy, if you've not heard of it, is a software KM switch (you know, like KVM.. only without the V) ie. you share a keyboard and mouse accross multiple machines that each have a dedicated monitor. It's kind of specialist and fancy, but it's more responsive than VNC and way more nerdy than just two keyboards.</p>
+<ul>
+  <li><a href="http://synergy2.sourceforge.net">http://synergy2.sourceforge.net</a></li>
+</ul>
+<p>If, like me, you run a mac as your main machine and a PC for testing/fileserver/etc then you'll want the synergy server on the mac. No sweat. Only (at the moment anyway), the software is built for windows (service) or linux (daemon) environments. OS X is kind of like linux, right?</p>
+<p>If you're familiar with linux-based systems then you'll have done a few <code>/etc/init.d/<span>apache2</span> restart</code> (or <code><span>fetchmail</span></code> or whatever) 's in your time. You can't do this with Mac OS X, but Apple have provided something even better: <code>lanuchd</code>.</p>
+<p>You probably want to look this up with Apple or read the <code>man</code> pages on this one, as it does a lot more than just restart daemons, but anyway it's good for our purposes.</p>
+<ol>
+  <li><p>Set up the <code>synergy</code> config file somewhere. It has a pretty simple set of instructions:</p>
+<pre>section: screens
+  beng:
+  beta9:
+    alt = super
+    super = alt
+end
+
+section: links
+  beta9:
+    right = beng9
+  beng:
+    left = beta9
+end
+
+section: aliases
+  beng:
+    beng.local
+end
+</pre>
+    <p>So the mac, <strong>beng</strong>, is on the right and the PC, <strong>beta9</strong> is on the left of beng. You'll see straight away if you've screwed this up. I don't remember where I got the alt/super mapping from, but it maps the Apple key to the Windows key and mac-alt to PC-alt.</p></li>
+  <li><p>Next, you'll need to set up a LaunchDaemon plist under <code>/Library/LaunchDaemons</code> like this (my synergy resides at <code>/opt</code>, I don't remember why I put it there):</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot;
+  &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+  &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;<em>net.sourceforge.synergys</em>&lt;/string&gt;
+  &lt;key&gt;OnDemand&lt;/key&gt;
+    &lt;false/&gt;
+  &lt;key&gt;ProgramArguments&lt;/key&gt;
+  &lt;array&gt;
+    &lt;string&gt;<em>/opt/synergy/</em>synergys&lt;/string&gt;
+    &lt;string&gt;-f&lt;/string&gt;
+    &lt;string&gt;--config&lt;/string&gt;
+    &lt;string&gt;<em>/opt/synergy/synergy.conf</em>&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;key&gt;RunAtLoad&lt;/key&gt;
+  &lt;key&gt;StandardErrorPath&lt;/key&gt;
+    &lt;string&gt;/dev/null&lt;/string&gt;
+  &lt;key&gt;StandardOutPath&lt;/key&gt;
+    &lt;string&gt;/dev/null&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</pre>
+    <p>(you can call it whatever you like under <em>label</em>)</p>
+    <p>Save it as <code>synergy.plist</code>, <code>/Library/LaunchDaemons</code> is owned by <code>root:wheel</code> so you'll need to <code>sudo</code> everything. The <code>-f</code> runs it in foreground (ie. non-daemon) mode and <code>launchd</code> then "daemonises" it - <code>synergy</code> running in daemon mode forks and exits after starting, and <code>launchd</code> doesn't allow that.</p></li>
+  <li><p>Next, you need to tell <code>launchd</code> to load this daemon:</p>
+    <p><code>sudo launchctl load /Library/LaunchDaemons/synergy.plist</code></p>
+  </li>
+  <li><p>So that's pretty much it, now <code>synergy</code> will fire up during the startup sequence, completely transparent. You might need to give it a kick sometimes (the software is not perfect), which you can do with <code>launchctl</code>. Without parameters, this will drop you in an interactive mode where you can do what you need to:</p>
+    <p><code>list</code> to show all the daemons running<br />
+<code>stop</code> and <code>start</code> a job from above</p>
+    <p>Don't forget to <code>sudo launchctl</code>, it's running as root.</p>
+  </li>
+</ol>
+
+<ul>
+  <li><a href="http://www.afp548.com/forum/viewtopic.php?showtopic=12565">http://www.afp548.com/forum/viewtopic.php?showtopic=12565</a></li>
+  <li>If you fear the terminal, Peter Borg has another sweet sweet program for you: <a href="http://lingon.sourceforge.net/">Lingon</a>.</li>
+  <li>You could also use the <a href="http://software.landryhetu.com/synergy/">SynergyKM GUI</a>, but where's the fun in that?</li>
+</ul>
+]]>
+      </description>
+      <pubDate>Sun, 25 Jul 2007 23:57:00</pubDate>
+    </item>
+
+    <item>
+      <title>! Grep</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?__Grep</guid>
+      <description>
+<![CDATA[
+<p><code>-v</code> to invert pattern.</p>
+<p>If you were, let's say, trying to exclude a local IP range from your recent webserver activity:</p>
+<pre>tail -n1000 /var/log/apache2/access.log | grep -v <span>10.1.1</pre></p>
+]]>
+      </description>
+      <pubDate>Sun, 25 Jul 2007 14:01:00</pubDate>
+    </item>
+
+    <item>
+      <title>Backup and restore a MySQL database</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Backup_and_restore_a_MySQL_database</guid>
+      <description>
+<![CDATA[
+<p>Backup from shell:</p>
+<pre>
+mysqldump -uroot -e <em>schema</em> > <em>file.sql</em>
+</pre>
+<p>If the target is phpmyadmin on MySQL 4.x (a sadly common config), you need to strip out charset info:</p>
+<pre>
+mysqldump -uroot -e --quick --compact <em>schema</em> > <em>file.sql</em>
+</pre>
+<p>To restore at shell:</p>
+<pre>
+mysql -uroot <em>schema</em> < <em>file.sql</em>
+</pre>
+<p>The Migrator:</p>
+<pre>
+mysqldump -uroot -e -A > db.sql
+</pre>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html">http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Fri, 23 Jul 2007 16:03:00</pubDate>
+    </item>
+
+    <item>
+      <title>Add a new user account to MySQL</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Add_a_new_user_account_to_MySQL</guid>
+      <description>
+<![CDATA[
+<p>For access to all privileges and all schemata (not a great idea):</p>
+<pre>
+GRANT <em>ALL PRIVILEGES</em> ON *.* TO '<em>user</em>'@'localhost'
+  IDENTIFIED BY '<em>password</em>' WITH GRANT OPTION;
+</pre>
+<ul>
+  <li><a href="http://dev.mysql.com/doc/refman/5.0/en/adding-users.html">http://dev.mysql.com/doc/refman/5.0/en/adding-users.html</a></li>
+  <li><a href="http://dev.mysql.com/doc/refman/5.0/en/grant.html">GRANT Syntax (ref for privileges)</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 22 Jul 2007 17:03:00</pubDate>
+    </item>
+
+    <item>
+      <title>Config Mutt to read from IMAP</title>
+      <guid isPermaLink="true">http://dev.waitingallday.com/yoyo/Archive/Title/?Config_Mutt_to_read_from_IMAP</guid>
+      <description>
+<![CDATA[
+<p>For local IMAP, create a new <code>.muttrc</code> in <code>~/</code>:</p>
+<pre>
+set spoolfile="imap://<em>user</em>:<em>password</em>@localhost/INBOX"
+set record="=Sent"
+set postponed="=Drafts"
+</pre>
+<p>Easy.</p>
+<ul>
+  <li><a href="http://wiki.mutt.org/?MuttGuide/UseIMAP">http://wiki.mutt.org/?MuttGuide/UseIMAP</a></li>
+</ul>
+]]>
+      </description>
+      <pubDate>Thu, 22 Jul 2007 14:51:00</pubDate>
+    </item>
+
+  </channel>
+</rss>
